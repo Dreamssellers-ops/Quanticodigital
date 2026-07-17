@@ -30,11 +30,6 @@
     --text-mid:#a9afb8;
     --text-low:#6b7180;
     --radius: 14px;
-    
-    /* Aspect ratios calculados para evitar CLS */
-    --ratio-banner: 2912 / 1440;      /* ~2.02:1 */
-    --ratio-photo: 16 / 10;           /* 1.6:1 */
-    --ratio-square: 1 / 1;            /* 1:1 */
   }
   
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -121,22 +116,39 @@
   .nav-links{display:none;}
   @media(min-width:860px){.nav-links{display:flex;}}
 
-  /* ---------- MODEL BANNER (OTIMIZADO) ---------- */
+  /* ---------- MODEL BANNER (RESPONSIVO) ---------- */
   .model-banner{
     position:relative;
     width:100%;
-    /* Aspect-ratio nativo evita CLS */
-    aspect-ratio: var(--ratio-banner);
+    /* Mobile: proporção mais quadrada para não ficar achatado */
+    aspect-ratio: 4 / 3;
+    min-height: 320px;
+    max-height: 70vh;
     overflow:hidden;
     border-bottom:1px solid var(--line);
     background: var(--panel);
-    /* Containment para isolamento */
     contain: layout paint size;
-    /* Placeholder gradient enquanto carrega */
     background-image: 
       linear-gradient(135deg, var(--panel-2) 0%, var(--panel) 50%, var(--panel-2) 100%);
     background-size: 200% 200%;
     animation: shimmer 1.5s ease-in-out infinite;
+  }
+  
+  /* Tablet: proporção intermediária */
+  @media(min-width: 640px){
+    .model-banner{
+      aspect-ratio: 16 / 9;
+      min-height: 400px;
+    }
+  }
+  
+  /* Desktop: proporção wide original */
+  @media(min-width: 1024px){
+    .model-banner{
+      aspect-ratio: 2.02 / 1;
+      min-height: 480px;
+      max-height: 600px;
+    }
   }
   
   @keyframes shimmer {
@@ -144,7 +156,6 @@
     100% { background-position: -200% 0; }
   }
   
-  /* Remove animação quando imagem carrega */
   .model-banner.loaded {
     animation: none;
     background: var(--panel);
@@ -157,13 +168,19 @@
     width:100%; 
     height:100%;
     object-fit:cover;
-    object-position: center;
-    /* Desempenho de renderização */
+    /* Mobile: foca no centro da imagem */
+    object-position: center center;
     will-change: transform;
     transform: translateZ(0);
   }
   
-  /* Fade in suave quando carrega */
+  /* Desktop: pode focar um pouco acima */
+  @media(min-width: 1024px){
+    .model-banner img{
+      object-position: center 20%;
+    }
+  }
+  
   .model-banner img {
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -172,20 +189,64 @@
     opacity: 1;
   }
 
+  /* Overlay responsivo */
   .model-banner-overlay{
-    position:absolute; inset:0;
-    background:linear-gradient(90deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.65) 38%, rgba(10,12,16,0.1) 68%);
-    display:flex; align-items:center;
-    padding:0 24px;
-    /* Garante que overlay fique acima da imagem */
+    position:absolute; 
+    inset:0;
+    /* Mobile: gradiente vertical mais forte embaixo */
+    background:linear-gradient(
+      180deg, 
+      rgba(10,12,16,0.3) 0%, 
+      rgba(10,12,16,0.85) 50%, 
+      rgba(10,12,16,0.98) 100%
+    );
+    display:flex; 
+    align-items:flex-end; /* Alinha no bottom em mobile */
+    padding:24px 20px;
     z-index: 1;
   }
+  
+  /* Tablet/Desktop: gradiente lateral */
+  @media(min-width: 640px){
+    .model-banner-overlay{
+      background:linear-gradient(
+        90deg, 
+        rgba(10,12,16,0.95) 0%, 
+        rgba(10,12,16,0.75) 40%, 
+        rgba(10,12,16,0.3) 70%
+      );
+      align-items:center;
+      padding:0 24px;
+    }
+  }
+  
   .model-banner-overlay .wrap{width:100%;}
   .model-banner-overlay h2{
-    font-size:clamp(1.6rem,4vw,2.6rem); max-width:440px; line-height:1.15; margin-bottom:14px;
+    font-size:clamp(1.4rem, 5vw, 2.6rem); 
+    max-width:100%; 
+    line-height:1.15; 
+    margin-bottom:12px;
   }
+  
+  @media(min-width: 640px){
+    .model-banner-overlay h2{
+      max-width:440px;
+    }
+  }
+  
   .model-banner-overlay h2 em{font-style:normal; color:var(--gold);}
-  .model-banner-overlay p{color:var(--text-mid); max-width:380px; margin-bottom:22px; font-size:.95rem;}
+  .model-banner-overlay p{
+    color:var(--text-mid); 
+    max-width:100%; 
+    margin-bottom:18px; 
+    font-size:.95rem;
+  }
+  
+  @media(min-width: 640px){
+    .model-banner-overlay p{
+      max-width:380px;
+    }
+  }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -279,17 +340,31 @@
     }
   }
 
-  /* ---------- PHOTO FRAME (HERO) - OTIMIZADO ---------- */
+  /* ---------- PHOTO FRAME (RESPONSIVO) ---------- */
   .photo-frame-container {
     position: relative;
     width: 100%;
-    /* Aspect ratio consistente */
-    aspect-ratio: var(--ratio-photo);
+    /* Mobile: proporção mais quadrada */
+    aspect-ratio: 4 / 3;
     margin-bottom: 18px;
     border-radius: var(--radius);
     overflow: hidden;
     contain: layout paint size;
     background: var(--panel);
+  }
+  
+  /* Tablet: 16:10 */
+  @media(min-width: 640px){
+    .photo-frame-container{
+      aspect-ratio: 16 / 10;
+    }
+  }
+  
+  /* Desktop: mais wide */
+  @media(min-width: 1024px){
+    .photo-frame-container{
+      aspect-ratio: 16 / 9;
+    }
   }
   
   .photo-frame-container picture,
@@ -302,7 +377,6 @@
     border: 1px solid var(--line);
   }
   
-  /* Estado de carregamento */
   .photo-frame-container img {
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -311,7 +385,6 @@
     opacity: 1;
   }
   
-  /* Placeholder skeleton */
   .photo-frame-container::before {
     content: '';
     position: absolute;
@@ -330,7 +403,7 @@
     100% { background-position: -200% 0; }
   }
 
-  /* ---------- BIG STAT + PHOTO (OTIMIZADO) ---------- */
+  /* ---------- BIG STAT + PHOTO (RESPONSIVO) ---------- */
   .stat-photo{
     position:relative;
     border-top:1px solid var(--line);
@@ -338,11 +411,16 @@
     background:var(--panel);
     overflow:hidden;
     contain: layout paint;
-    /* Altura mínima para evitar colapso */
-    min-height: 400px;
+    /* Mobile: altura maior para acomodar conteúdo */
+    min-height: 500px;
   }
   
-  /* Container da imagem de background otimizado */
+  @media(min-width: 768px){
+    .stat-photo{
+      min-height: 400px;
+    }
+  }
+  
   .stat-photo-bg-container {
     position:absolute; 
     inset:0;
@@ -350,33 +428,63 @@
     z-index: 0;
   }
   
-  /* Imagem com lazy loading */
   .stat-photo-bg-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    /* Efeito de escala suave no hover opcional */
+    /* Mobile: foca no topo onde está o conteúdo importante */
+    object-position: center 30%;
     transition: transform 0.6s ease;
   }
+  
+  @media(min-width: 768px){
+    .stat-photo-bg-container img{
+      object-position: center center;
+    }
+  }
+  
   .stat-photo:hover .stat-photo-bg-container img {
     transform: scale(1.02);
   }
   
-  /* Overlay escuro para legibilidade */
+  /* Overlay responsivo */
   .stat-photo-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(10,12,16,0.95) 0%, rgba(10,12,16,0.8) 50%, rgba(10,12,16,0.6) 100%);
+    /* Mobile: gradiente vertical mais escuro */
+    background: linear-gradient(
+      180deg,
+      rgba(10,12,16,0.9) 0%,
+      rgba(10,12,16,0.85) 50%,
+      rgba(10,12,16,0.9) 100%
+    );
     z-index: 1;
+  }
+  
+  @media(min-width: 768px){
+    .stat-photo-overlay{
+      background: linear-gradient(
+        90deg, 
+        rgba(10,12,16,0.95) 0%, 
+        rgba(10,12,16,0.8) 50%, 
+        rgba(10,12,16,0.6) 100%
+      );
+    }
   }
   
   .stat-photo-inner{
     position:relative; 
-    padding:80px 0; 
+    padding:60px 0; 
     max-width:640px;
     z-index: 2;
   }
+  
+  @media(min-width: 768px){
+    .stat-photo-inner{
+      padding:80px 0;
+    }
+  }
+  
   .stat-photo-inner .eyebrow{margin-bottom:16px;}
   .stat-photo-inner h2{font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:18px; line-height:1.15;}
   .stat-photo-inner h2 b{color:var(--gold);}
@@ -579,7 +687,7 @@
   }
   .float-cta:hover{transform:translateY(-3px);}
 
-  /* ---------- RESPONSIVE IMAGES UTILITIES ---------- */
+  /* ---------- RESPONSIVE UTILITIES ---------- */
   .img-responsive {
     max-width: 100%;
     height: auto;
@@ -627,19 +735,8 @@
 <main id="top">
 
   <!-- ==================== BANNER HERO (OTIMIZADO) ==================== -->
-  <!-- 
-    RESOLUÇÕES RECOMENDADAS:
-    - 768w: 768x380px (mobile)
-    - 1200w: 1200x594px (tablet)
-    - 1920w: 1920x950px (desktop)
-    - 2912w: 2912x1440px (original, retina)
-    
-    FORMATO: WebP com fallback JPEG
-    COMPRESSÃO: WebP 80-85%, JPEG 85%
-  -->
   <section class="model-banner" id="heroBanner">
     <picture>
-      <!-- WebP sources -->
       <source 
         type="image/webp" 
         srcset="
@@ -650,7 +747,6 @@
         "
         sizes="100vw"
       >
-      <!-- JPEG fallback -->
       <source 
         type="image/jpeg" 
         srcset="
@@ -661,7 +757,6 @@
         "
         sizes="100vw"
       >
-      <!-- Imagem padrão -->
       <img 
         src="Fotos/banner-modelo-1200w.jpg" 
         alt="Seu dispositivo parou de funcionar? Solicite seu orçamento pelo WhatsApp em minutos - Quântico Digital"
@@ -711,14 +806,6 @@
       </div>
 
       <div>
-        <!-- PHOTO FRAME OTIMIZADO -->
-        <!-- 
-          RESOLUÇÕES RECOMENDADAS (proporção 16:10):
-          - 400w: 400x250px (mobile)
-          - 600w: 600x375px (tablet)
-          - 800w: 800x500px (desktop)
-          - 1200w: 1200x750px (retina)
-        -->
         <div class="photo-frame-container" id="heroPhoto">
           <picture>
             <source 
@@ -792,13 +879,6 @@
   </section>
 
   <!-- ==================== BIG STAT + PHOTO (OTIMIZADO) ==================== -->
-  <!-- 
-    RESOLUÇÕES RECOMENDADAS (background):
-    - 800w: 800x600px (mobile)
-    - 1200w: 1200x900px (tablet)
-    - 1600w: 1600x1200px (desktop)
-    - 2400w: 2400x1800px (retina)
-  -->
   <section class="stat-photo">
     <div class="stat-photo-bg-container">
       <picture>
@@ -923,7 +1003,6 @@
         </div>
 
         <form id="leadForm">
-          <!-- STEP 1: device -->
           <div class="form-step active" data-step="1">
             <span class="field-label">Qual aparelho precisa de reparo?</span>
             <div class="device-pick" id="devicePick">
@@ -942,7 +1021,6 @@
             </div>
           </div>
 
-          <!-- STEP 2: problem -->
           <div class="form-step" data-step="2">
             <span class="field-label">Qual é o problema? (pode marcar mais de um)</span>
             <div class="problem-pick" id="problemPick">
@@ -960,7 +1038,6 @@
             </div>
           </div>
 
-          <!-- STEP 3: contact -->
           <div class="form-step" data-step="3">
             <span class="field-label">Como podemos te chamar?</span>
             <input type="text" id="leadName" placeholder="Seu nome" autocomplete="name" required>
@@ -1068,10 +1145,8 @@
 </a>
 
 <script>
-  // ======= CONFIG =======
   const WHATSAPP_NUMBER = "553182937047";
 
-  // ======= Counter animation =======
   (function animateCounter(){
     const el = document.getElementById('counterReparos');
     if (!el) return;
@@ -1086,7 +1161,6 @@
     requestAnimationFrame(tick);
   })();
 
-  // ======= FAQ accordion =======
   document.querySelectorAll('.faq-list').forEach(list => {
     list.querySelectorAll('.faq-item').forEach(item => {
       item.querySelector('.faq-q').addEventListener('click', () => {
@@ -1097,7 +1171,6 @@
     });
   });
 
-  // ======= Service grid -> jumps to form =======
   let selectedDevice = null;
   let selectedProblems = new Set();
 
@@ -1139,7 +1212,6 @@
     });
   });
 
-  // ======= Multi-step navigation =======
   let currentStep = 1;
 
   function showStep(step){
@@ -1170,7 +1242,6 @@
     btn.addEventListener('click', () => showStep(currentStep - 1));
   });
 
-  // ======= Submit -> WhatsApp =======
   document.getElementById('leadForm')?.addEventListener('submit', function(e){
     e.preventDefault();
     const name = document.getElementById('leadName')?.value.trim();
@@ -1186,7 +1257,6 @@
     const problems = Array.from(selectedProblems).join(', ');
     const message = `Olá! Vim pelo site da Quântico Digital e quero um orçamento.\nAparelho: ${selectedDevice}\nProblema: ${problems}\nNome: ${name}\nTelefone: ${phone}`;
 
-    // Backup local
     try{
       const leads = JSON.parse(localStorage.getItem('quantico_leads') || '[]');
       leads.push({ device: selectedDevice, problems: Array.from(selectedProblems), name, phone, date: new Date().toISOString() });
@@ -1227,17 +1297,14 @@
     showStep(1);
   });
 
-  // Footer WhatsApp
   const footerWhats = document.getElementById('footerWhats');
   if(footerWhats) footerWhats.href = `https://wa.me/${WHATSAPP_NUMBER}`;
 
-  // ======= Intersection Observer para lazy loading avançado =======
   if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const img = entry.target;
-          // Adiciona classe loaded quando visível
           const container = img.closest('.photo-frame-container, .stat-photo-bg-container');
           if (container) container.classList.add('loaded');
           observer.unobserve(img);
@@ -1248,7 +1315,6 @@
       threshold: 0.01
     });
 
-    // Observa imagens lazy
     document.querySelectorAll('img[loading="lazy"]').forEach(img => {
       imageObserver.observe(img);
     });
