@@ -3,14 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quântico Digital | Assistência Técnica Especializada em BH</title>
-<meta name="description" content="Conserto de celular, notebook, tablet, TV e mais. Orçamento sem compromisso em minutos, direto no WhatsApp.">
+<title>Assistência Técnica em BH | Conserto de Celular, Notebook e Tablet | Quântico Digital</title>
+<meta name="description" content="Assistência técnica especializada em Belo Horizonte. Conserto de celular, notebook, tablet com garantia de 90 dias. Orçamento em 2 min via WhatsApp. Técnicos certificados nas regiões da Savassi, Pampulha, Centro e todo BH.">
+<meta name="keywords" content="assistência técnica BH, conserto celular Belo Horizonte, reparo notebook BH, técnico celular Savassi, assistência técnica Pampulha, conserto tablet BH, orçamento rápido whatsapp">
 
-<!-- Preconnect para fontes -->
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="business.business">
+<meta property="og:url" content="https://quanticodigital.com.br">
+<meta property="og:title" content="Quântico Digital | Assistência Técnica Especializada em BH">
+<meta property="og:description" content="Conserto de celular, notebook e tablet em Belo Horizonte. Orçamento em 2 min via WhatsApp com garantia de 90 dias.">
+<meta property="og:image" content="Fotos/banner-modelo.jpg">
+
+<!-- Schema.org LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Quântico Digital",
+  "description": "Assistência técnica especializada em celulares, notebooks, tablets e smart TVs em Belo Horizonte",
+  "url": "https://quanticodigital.com.br",
+  "telephone": "+55-31-8293-7047",
+  "email": "contato@quanticodigital.com.br",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Belo Horizonte",
+    "addressRegion": "MG",
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-19.9167",
+    "longitude": "-43.9345"
+  },
+  "openingHours": "Mo-Fr 09:00-18:00, Sa 09:00-13:00",
+  "priceRange": "$$",
+  "areaServed": ["Savassi", "Pampulha", "Centro", "Lourdes", "Funcionários", "Sion", "Cruzeiro", "BH"]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Preload da imagem crítica -->
 <link rel="preload" as="image" href="Fotos/banner-modelo.jpg" fetchpriority="high">
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -28,7 +60,10 @@
     --text-hi:#f2efe9;
     --text-mid:#a9afb8;
     --text-low:#6b7180;
+    --danger:#ff6b6b;
+    --danger-dim: rgba(255,107,107,0.2);
     --radius: 14px;
+    --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.5);
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -49,844 +84,1798 @@
   a{color:inherit;text-decoration:none;}
 
   .wrap{
-    max-width:1180px;
+    max-width:1200px;
     margin:0 auto;
     padding:0 24px;
   }
 
   ::selection{background:var(--gold-dim);color:var(--text-hi);}
 
-  /* ---------- NAV ---------- */
+  /* ---------- STICKY URGENCY BAR ---------- */
+  .urgency-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    background:linear-gradient(90deg, var(--danger) 0%, #ff8e53 100%);
+    color:#fff;
+    padding:10px 20px;
+    text-align:center;
+    font-size:0.85rem;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    animation:pulse-urgency 2s ease-in-out infinite;
+  }
+  @keyframes pulse-urgency{
+    0%,100%{opacity:1;}
+    50%{opacity:0.9;}
+  }
+  .urgency-bar .live-dot{
+    width:8px;
+    height:8px;
+    background:#fff;
+    border-radius:50%;
+    animation:pulse-dot 1s ease-in-out infinite;
+  }
+  .urgency-bar strong{color:#fff;}
+
+  /* ---------- HEADER ---------- */
   header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(10,12,16,0.85);
-    backdrop-filter:blur(10px);
+    position:sticky;
+    top:40px;
+    z-index:50;
+    background:rgba(10,12,16,0.95);
+    backdrop-filter:blur(20px);
     border-bottom:1px solid var(--line);
   }
   nav.wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:70px;
   }
   .logo{
     font-family:'Space Grotesk',sans-serif;
-    font-weight:700; font-size:1.15rem;
-    display:flex; align-items:center; gap:10px;
+    font-weight:700;
+    font-size:1.2rem;
+    display:flex;
+    align-items:center;
+    gap:10px;
   }
   .logo-mark{
-    width:12px;height:12px;border-radius:50%;
+    width:14px;
+    height:14px;
+    border-radius:50%;
     background:var(--signal);
-    box-shadow:0 0 12px 2px var(--signal-dim);
+    box-shadow:0 0 15px 3px var(--signal-dim);
     animation:pulse-dot 2.4s ease-in-out infinite;
   }
   @keyframes pulse-dot{
     0%,100%{opacity:1; transform:scale(1);}
-    50%{opacity:.5; transform:scale(.8);}
+    50%{opacity:.6; transform:scale(.85);}
   }
   .logo span{color:var(--gold);}
-  .nav-links{display:flex; gap:32px; align-items:center;}
-  .nav-links a{color:var(--text-mid); font-size:.92rem; transition:color .2s;}
+  
+  .header-badge{
+    display:none;
+    align-items:center;
+    gap:8px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:0.75rem;
+    color:var(--text-mid);
+  }
+  .header-badge .dot{
+    width:6px;
+    height:6px;
+    background:var(--signal);
+    border-radius:50%;
+    animation:pulse-dot 1.5s infinite;
+  }
+  @media(min-width:768px){.header-badge{display:flex;}}
+
+  .nav-links{display:none; gap:32px; align-items:center;}
+  @media(min-width:860px){.nav-links{display:flex;}}
+  .nav-links a{color:var(--text-mid); font-size:0.9rem; transition:color 0.2s; font-weight:500;}
   .nav-links a:hover{color:var(--text-hi);}
+
   .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:12px 22px; border-radius:999px;
-    font-weight:600; font-size:.92rem;
-    border:1px solid transparent; cursor:pointer;
-    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 28px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.95rem;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:all 0.2s ease;
     white-space:nowrap;
+    text-align:center;
   }
   .btn-gold{
-    background:var(--gold); color:#141008;
+    background:var(--gold);
+    color:#141008;
+    box-shadow:0 4px 15px var(--gold-dim);
   }
-  .btn-gold:hover{transform:translateY(-2px); box-shadow:0 8px 24px -6px var(--gold-dim);}
+  .btn-gold:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px var(--gold-dim);
+  }
   .btn-ghost{
-    border-color:var(--line); color:var(--text-hi); background:transparent;
+    border-color:var(--line);
+    color:var(--text-hi);
+    background:transparent;
   }
-  .btn-ghost:hover{border-color:var(--gold-dim); background:var(--panel);}
-  .nav-cta{display:none;}
-  @media(min-width:860px){.nav-cta{display:inline-flex;}}
-  .nav-links{display:none;}
-  @media(min-width:860px){.nav-links{display:flex;}}
+  .btn-ghost:hover{
+    border-color:var(--gold);
+    background:var(--panel);
+  }
+  .btn-large{
+    padding:18px 36px;
+    font-size:1.05rem;
+  }
+  .btn-whatsapp{
+    background:#25d366;
+    color:#fff;
+  }
+  .btn-whatsapp:hover{
+    background:#20bd5a;
+    transform:translateY(-2px);
+  }
 
-  /* ---------- BANNER HERO - CORRIGIDO ---------- */
-  .model-banner{
+  /* ---------- HERO BANNER ---------- */
+  .hero-banner{
     position:relative;
     width:100%;
-    /* Mobile: altura proporcional */
-    height: 60vh;
-    min-height: 400px;
-    max-height: 600px;
+    min-height:85vh;
+    display:flex;
+    align-items:center;
     overflow:hidden;
     border-bottom:1px solid var(--line);
-    background: var(--panel);
   }
-
-  /* Desktop: altura maior */
-  @media(min-width: 1024px){
-    .model-banner{
-      height: 70vh;
-      max-height: 700px;
-    }
-  }
-
-  .model-banner img {
-    position:absolute; 
+  .hero-banner::before{
+    content:'';
+    position:absolute;
     inset:0;
-    width:100%; 
+    background:linear-gradient(135deg, rgba(10,12,16,0.95) 0%, rgba(10,12,16,0.7) 50%, rgba(10,12,16,0.4) 100%);
+    z-index:1;
+  }
+  .hero-banner img{
+    position:absolute;
+    inset:0;
+    width:100%;
     height:100%;
     object-fit:cover;
-    object-position: 20% center; /* Ajuste para focar na esquerda no mobile */
+    object-position:center;
   }
-
-  /* Retorna ao centro em telas maiores (desktop) */
-  @media(min-width: 768px){
-    .model-banner img {
-      object-position: center center;
-    }
-  }
-
-  /* Overlay responsivo */
-  .model-banner-overlay{
-    position:absolute; 
-    inset:0;
-    /* Mobile: gradiente vertical */
-    background:linear-gradient(
-      180deg, 
-      rgba(10,12,16,0.2) 0%, 
-      rgba(10,12,16,0.7) 40%, 
-      rgba(10,12,16,0.95) 100%
-    );
-    display:flex; 
-    align-items:flex-end;
-    padding:40px 24px;
-    z-index: 1;
-  }
-
-  /* Desktop: gradiente lateral */
-  @media(min-width: 768px){
-    .model-banner-overlay{
-      background:linear-gradient(
-        90deg, 
-        rgba(10,12,16,0.92) 0%, 
-        rgba(10,12,16,0.7) 45%, 
-        rgba(10,12,16,0.2) 100%
-      );
-      align-items:center;
-      padding:0 24px;
-    }
-  }
-
-  .model-banner-overlay .wrap{width:100%;}
-  .model-banner-overlay h2{
-    font-size:clamp(1.8rem, 5vw, 2.8rem); 
-    max-width:100%; 
-    line-height:1.15; 
-    margin-bottom:16px;
-    color: var(--text-hi);
-  }
-
-  @media(min-width: 768px){
-    .model-banner-overlay h2{
-      max-width:500px;
-    }
-  }
-
-  .model-banner-overlay h2 em{font-style:normal; color:var(--gold);}
-  .model-banner-overlay p{
-    color:var(--text-mid); 
-    max-width:100%; 
-    margin-bottom:24px; 
-    font-size:1rem;
-    line-height: 1.5;
-  }
-
-  @media(min-width: 768px){
-    .model-banner-overlay p{
-      max-width:420px;
-    }
-  }
-
-  /* ---------- HERO ---------- */
-  .hero{
+  .hero-content{
     position:relative;
-    padding:80px 0 60px;
+    z-index:2;
+    width:100%;
+    padding:120px 0 80px;
+  }
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:10px 20px;
+    border-radius:999px;
+    margin-bottom:28px;
+    font-size:0.85rem;
+    color:var(--text-mid);
+  }
+  .hero-badge .stars{color:var(--gold);}
+  .hero-badge strong{color:var(--text-hi); margin-left:4px;}
+  
+  .hero-headline{
+    font-size:clamp(2.2rem, 5vw, 3.8rem);
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:24px;
+    max-width:650px;
+  }
+  .hero-headline .highlight{
+    color:var(--gold);
+    position:relative;
+  }
+  .hero-headline .highlight::after{
+    content:'';
+    position:absolute;
+    bottom:5px;
+    left:0;
+    right:0;
+    height:8px;
+    background:var(--gold-dim);
+    z-index:-1;
+  }
+  .hero-subheadline{
+    font-size:clamp(1.1rem, 2vw, 1.3rem);
+    color:var(--text-mid);
+    max-width:550px;
+    margin-bottom:32px;
+    line-height:1.6;
+  }
+  .hero-ctas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:40px;
+  }
+  .hero-stats{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .hero-stat{
+    display:flex;
+    flex-direction:column;
+  }
+  .hero-stat .number{
+    font-family:'JetBrains Mono',monospace;
+    font-size:2rem;
+    font-weight:700;
+    color:var(--signal);
+  }
+  .hero-stat .label{
+    font-size:0.8rem;
+    color:var(--text-low);
+    margin-top:4px;
+  }
+
+  /* ---------- SOCIAL PROOF BAR ---------- */
+  .social-proof{
+    background:var(--panel);
+    border-bottom:1px solid var(--line);
+    padding:24px 0;
+  }
+  .social-proof-content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .social-proof-text{
+    font-size:0.9rem;
+    color:var(--text-mid);
+  }
+  .social-proof-text strong{color:var(--text-hi);}
+  .client-avatars{
+    display:flex;
+  }
+  .client-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid var(--panel);
+    margin-left:-10px;
+    background:var(--panel-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.7rem;
+    color:var(--text-mid);
+  }
+  .client-avatar:first-child{margin-left:0;}
+  .trust-badges{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .trust-badge{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.8rem;
+    color:var(--text-mid);
+  }
+  .trust-badge svg{
+    width:20px;
+    height:20px;
+    color:var(--signal);
+  }
+
+  /* ---------- PAIN SECTION (AIDA) ---------- */
+  .pain-section{
+    padding:100px 0;
     border-bottom:1px solid var(--line);
   }
-  .hero-grid{
-    display:grid; grid-template-columns:1fr; gap:48px; align-items:center;
+  .section-header{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 60px;
   }
-  @media(min-width:960px){
-    .hero-grid{grid-template-columns:1.05fr .95fr;}
-    .hero{padding:96px 0 72px;}
+  .section-header .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--danger);
+    font-size:0.8rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:16px;
   }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    color:var(--signal); font-size:.8rem; font-weight:600;
-    text-transform:uppercase; letter-spacing:.12em;
-    margin-bottom:18px;
+  .section-header h2{
+    font-size:clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom:20px;
   }
-  .eyebrow::before{content:"";width:18px;height:1px;background:var(--signal);}
-  .hero h1{
-    font-size:clamp(2rem, 4.6vw, 3.4rem);
-    font-weight:700; line-height:1.08;
-    margin-bottom:22px;
+  .section-header p{
+    color:var(--text-mid);
+    font-size:1.1rem;
   }
-  .hero h1 em{
-    font-style:normal; color:var(--gold);
+  .pain-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:24px;
   }
-  .hero p.lead{
-    color:var(--text-mid); font-size:1.08rem; max-width:520px; margin-bottom:32px;
-  }
-  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:40px;}
-  .stat-row{display:flex; gap:34px; flex-wrap:wrap;}
-  .stat{min-width:120px;}
-  .stat .num{font-family:'JetBrains Mono',monospace; font-size:1.6rem; font-weight:700; color:var(--text-hi);}
-  .stat .num span{color:var(--signal);}
-  .stat .label{font-size:.78rem; color:var(--text-low); margin-top:2px;}
-
-  /* ---------- SCOPE ---------- */
-  .scope{
-    position:relative;
+  .pain-card{
     background:var(--panel);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:28px 24px 22px;
-    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+    padding:32px;
+    text-align:center;
+    transition:all 0.3s ease;
   }
-  .scope-head{
-    display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:14px;
+  .pain-card:hover{
+    border-color:var(--gold-dim);
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-lg);
   }
-  .scope-title{font-size:.78rem; color:var(--text-low); text-transform:uppercase; letter-spacing:.1em;}
-  .scope-status{
-    font-size:.72rem; color:var(--signal); display:flex; align-items:center; gap:6px;
+  .pain-icon{
+    width:60px;
+    height:60px;
+    background:var(--panel-2);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 20px;
+    font-size:1.8rem;
   }
-  .scope-status::before{
-    content:""; width:6px;height:6px;border-radius:50%; background:var(--signal);
-    box-shadow:0 0 8px 1px var(--signal-dim);
+  .pain-card h3{
+    font-size:1.2rem;
+    margin-bottom:12px;
   }
-  .scope-svg-wrap{
-    background:linear-gradient(180deg, var(--panel-2), var(--panel));
-    border-radius:10px; border:1px solid var(--line);
-    padding:6px 0;
-  }
-  .scope-line{
-    stroke:var(--signal);
-    stroke-width:2;
-    fill:none;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    filter:drop-shadow(0 0 6px var(--signal-dim));
-  }
-  .scope-caption{
-    margin-top:16px; font-size:.85rem; color:var(--text-mid);
-  }
-  .scope-caption b{color:var(--text-hi); font-weight:600;}
-
-  @media (prefers-reduced-motion: no-preference){
-    .scope-line{
-      stroke-dasharray: 1200;
-      stroke-dashoffset: 1200;
-      animation: draw-line 3.2s linear infinite;
-    }
-    @keyframes draw-line{
-      0%{stroke-dashoffset:1200;}
-      70%{stroke-dashoffset:0;}
-      100%{stroke-dashoffset:-1200;}
-    }
+  .pain-card p{
+    color:var(--text-mid);
+    font-size:0.95rem;
+    line-height:1.6;
   }
 
-  /* ---------- PHOTO FRAME ---------- */
-  .photo-frame-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    margin-bottom: 18px;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--panel);
+  /* ---------- SOLUTION SECTION ---------- */
+  .solution-section{
+    padding:100px 0;
+    background:var(--panel);
+    border-bottom:1px solid var(--line);
   }
-
-  .photo-frame-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
+  .solution-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:60px;
+    align-items:center;
   }
-
-  /* ---------- STAT PHOTO ---------- */
-  .stat-photo{
+  @media(min-width:900px){
+    .solution-grid{grid-template-columns:1fr 1fr;}
+  }
+  .solution-content h2{
+    font-size:clamp(1.8rem, 3.5vw, 2.6rem);
+    margin-bottom:24px;
+    line-height:1.2;
+  }
+  .solution-content h2 em{
+    color:var(--gold);
+    font-style:normal;
+  }
+  .solution-content > p{
+    color:var(--text-mid);
+    font-size:1.1rem;
+    margin-bottom:32px;
+    line-height:1.7;
+  }
+  .benefits-list{
+    list-style:none;
+    margin-bottom:40px;
+  }
+  .benefits-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    margin-bottom:20px;
+    font-size:1rem;
+  }
+  .benefits-list li::before{
+    content:'✓';
+    width:24px;
+    height:24px;
+    background:var(--signal-dim);
+    color:var(--signal);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.8rem;
+    font-weight:bold;
+    flex-shrink:0;
+  }
+  .solution-visual{
     position:relative;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    background:var(--panel);
+  }
+  .solution-image{
+    border-radius:var(--radius);
     overflow:hidden;
-    min-height: 450px;
+    border:1px solid var(--line);
   }
-
-  @media(min-width: 768px){
-    .stat-photo{min-height: 400px;}
+  .solution-image img{
+    width:100%;
+    height:auto;
+    display:block;
   }
-
-  .stat-photo-bg-container {
-    position:absolute; 
-    inset:0;
-    overflow: hidden;
-    z-index: 0;
+  .floating-badge{
+    position:absolute;
+    bottom:-20px;
+    left:-20px;
+    background:var(--void);
+    border:1px solid var(--line);
+    padding:20px 24px;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);
   }
-
-  .stat-photo-bg-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+  .floating-badge .number{
+    font-family:'JetBrains Mono',monospace;
+    font-size:2.5rem;
+    font-weight:700;
+    color:var(--signal);
   }
-
-  .stat-photo-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(10,12,16,0.85) 0%,
-      rgba(10,12,16,0.9) 100%
-    );
-    z-index: 1;
+  .floating-badge .text{
+    font-size:0.85rem;
+    color:var(--text-mid);
   }
-
-  @media(min-width: 768px){
-    .stat-photo-overlay{
-      background: linear-gradient(
-        90deg, 
-        rgba(10,12,16,0.95) 0%, 
-        rgba(10,12,16,0.8) 50%, 
-        rgba(10,12,16,0.6) 100%
-      );
-    }
-  }
-
-  .stat-photo-inner{
-    position:relative; 
-    padding:60px 0; 
-    max-width:640px;
-    z-index: 2;
-  }
-
-  @media(min-width: 768px){
-    .stat-photo-inner{padding:80px 0;}
-  }
-
-  .stat-photo-inner .eyebrow{margin-bottom:16px;}
-  .stat-photo-inner h2{font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:18px; line-height:1.15;}
-  .stat-photo-inner h2 b{color:var(--gold);}
-  .stat-photo-inner p{color:var(--text-mid); margin-bottom:28px;}
-  .stat-photo-numbers{display:flex; gap:36px; flex-wrap:wrap;}
-  .stat-photo-numbers .n{font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:700; color:var(--signal);}
-  .stat-photo-numbers .l{font-size:.78rem; color:var(--text-low); margin-top:4px; max-width:140px;}
-
-  /* ---------- TRUST BAR ---------- */
-  .trust{
-    border-bottom:1px solid var(--line);
-    background:var(--panel);
-  }
-  .trust .wrap{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
-    padding:28px 24px;
-  }
-  @media(min-width:760px){.trust .wrap{grid-template-columns:repeat(4,1fr);}}
-  .trust-item{display:flex; gap:12px; align-items:flex-start;}
-  .trust-item svg{flex:none; margin-top:2px; color:var(--gold);}
-  .trust-item .t{font-size:.88rem; font-weight:600; color:var(--text-hi);}
-  .trust-item .d{font-size:.78rem; color:var(--text-low);}
 
   /* ---------- SERVICES ---------- */
-  .section{padding:80px 0;}
-  @media(min-width:768px){.section{padding:88px 0;}}
-  .section-head{max-width:620px; margin-bottom:48px;}
-  .section-head .eyebrow{margin-bottom:14px;}
-  .section-head h2{font-size:clamp(1.6rem, 3vw, 2.2rem); margin-bottom:14px;}
-  .section-head p{color:var(--text-mid);}
-
-  .services-grid{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+  .services-section{
+    padding:100px 0;
+    border-bottom:1px solid var(--line);
   }
-  @media(min-width:700px){.services-grid{grid-template-columns:repeat(3,1fr);}}
-  @media(min-width:1000px){.services-grid{grid-template-columns:repeat(4,1fr);}}
-
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:20px;
+  }
   .service-card{
     background:var(--panel);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:26px 20px;
+    padding:28px;
     cursor:pointer;
-    color:var(--text-hi);
-    font-family:'Inter',sans-serif;
-    transition:border-color .2s ease, transform .2s ease, background .2s ease;
-    text-align:left;
-    display:flex; flex-direction:column; gap:14px;
+    transition:all 0.3s ease;
+    position:relative;
+    overflow:hidden;
   }
-  .service-card:hover, .service-card.active{
+  .service-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg, var(--gold), var(--signal));
+    transform:scaleX(0);
+    transition:transform 0.3s ease;
+  }
+  .service-card:hover{
     border-color:var(--gold-dim);
-    background:var(--panel-2);
-    transform:translateY(-3px);
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-lg);
   }
-  .service-card svg{color:var(--signal); width:30px; height:30px;}
-  .service-card .name{font-weight:600; font-size:.98rem; color:var(--gold);}
-  .service-card .desc{font-size:.8rem; color:var(--text-hi);}
-
-  /* ---------- LEAD FORM ---------- */
-  .lead-section{
-    background:var(--panel);
+  .service-card:hover::before{
+    transform:scaleX(1);
+  }
+  .service-card.active{
+    border-color:var(--signal);
+    background:var(--panel-2);
+  }
+  .service-card.active::before{
+    transform:scaleX(1);
+    background:var(--signal);
+  }
+  .service-icon{
+    width:50px;
+    height:50px;
+    background:var(--panel-2);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:20px;
+    color:var(--signal);
+  }
+  .service-card h3{
+    font-size:1.1rem;
+    margin-bottom:10px;
+    color:var(--gold);
+  }
+  .service-card p{
+    font-size:0.9rem;
+    color:var(--text-mid);
+    line-height:1.5;
+  }
+  .service-price{
+    margin-top:16px;
+    padding-top:16px;
     border-top:1px solid var(--line);
+    font-size:0.85rem;
+    color:var(--text-low);
+  }
+  .service-price strong{
+    color:var(--signal);
+    font-size:1.1rem;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials-section{
+    padding:100px 0;
+    background:var(--panel);
     border-bottom:1px solid var(--line);
   }
-  .lead-grid{
-    display:grid; grid-template-columns:1fr; gap:40px;
+  .testimonials-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:24px;
   }
-  @media(min-width:960px){.lead-grid{grid-template-columns:.85fr 1.15fr;}}
-  .lead-copy h2{font-size:clamp(1.6rem,3vw,2.1rem); margin-bottom:16px;}
-  .lead-copy p{color:var(--text-mid); margin-bottom:24px; max-width:440px;}
-  .lead-list{display:flex; flex-direction:column; gap:14px;}
-  .lead-list li{
-    list-style:none; display:flex; gap:10px; align-items:flex-start;
-    font-size:.9rem; color:var(--text-mid);
-  }
-  .lead-list li svg{color:var(--signal); flex:none; margin-top:3px;}
-
-  .form-card{
+  .testimonial-card{
     background:var(--void);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:24px;
+    padding:32px;
+    position:relative;
   }
-  @media(min-width:640px){.form-card{padding:32px;}}
+  .testimonial-card::before{
+    content:'"';
+    position:absolute;
+    top:20px;
+    right:24px;
+    font-size:4rem;
+    color:var(--line);
+    font-family:serif;
+    line-height:1;
+  }
+  .testimonial-header{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:20px;
+  }
+  .testimonial-avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:var(--panel-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+    color:var(--gold);
+  }
+  .testimonial-info h4{
+    font-size:1rem;
+    margin-bottom:4px;
+  }
+  .testimonial-info .location{
+    font-size:0.8rem;
+    color:var(--text-low);
+  }
+  .testimonial-stars{
+    color:var(--gold);
+    margin-bottom:16px;
+    font-size:1.1rem;
+  }
+  .testimonial-text{
+    color:var(--text-mid);
+    line-height:1.7;
+    font-size:0.95rem;
+  }
+  .testimonial-verified{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:20px;
+    font-size:0.8rem;
+    color:var(--signal);
+  }
 
-  .step-indicator{
-    display:flex; gap:8px; margin-bottom:26px;
+  /* ---------- URGENCY CTA SECTION ---------- */
+  .urgency-section{
+    padding:80px 0;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
   }
-  .step-dot{
-    flex:1; height:3px; border-radius:2px; background:var(--line);
-    transition:background .3s ease;
+  .urgency-section::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at center, var(--danger-dim) 0%, transparent 70%);
+    opacity:0.3;
   }
-  .step-dot.done{background:var(--signal);}
+  .urgency-content{
+    position:relative;
+    z-index:1;
+  }
+  .urgency-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--danger-dim);
+    border:1px solid var(--danger);
+    color:var(--danger);
+    padding:12px 24px;
+    border-radius:999px;
+    font-size:0.9rem;
+    font-weight:600;
+    margin-bottom:24px;
+  }
+  .urgency-badge .pulse{
+    width:10px;
+    height:10px;
+    background:var(--danger);
+    border-radius:50%;
+    animation:pulse-dot 1s infinite;
+  }
+  .urgency-section h2{
+    font-size:clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom:16px;
+  }
+  .urgency-section > p{
+    color:var(--text-mid);
+    font-size:1.1rem;
+    max-width:600px;
+    margin:0 auto 32px;
+  }
+  .urgency-timer{
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    margin-bottom:40px;
+  }
+  .timer-box{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:20px 30px;
+    text-align:center;
+  }
+  .timer-box .number{
+    font-family:'JetBrains Mono',monospace;
+    font-size:2.5rem;
+    font-weight:700;
+    color:var(--danger);
+    display:block;
+  }
+  .timer-box .label{
+    font-size:0.75rem;
+    color:var(--text-low);
+    text-transform:uppercase;
+  }
 
+  /* ---------- LEAD FORM ---------- */
+  .lead-section{
+    padding:100px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .lead-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:60px;
+    align-items:start;
+  }
+  @media(min-width:900px){
+    .lead-grid{grid-template-columns:1fr 1.2fr;}
+  }
+  .lead-content h2{
+    font-size:clamp(1.8rem, 3vw, 2.4rem);
+    margin-bottom:20px;
+  }
+  .lead-content > p{
+    color:var(--text-mid);
+    font-size:1.1rem;
+    margin-bottom:32px;
+    line-height:1.7;
+  }
+  .lead-benefits{
+    list-style:none;
+  }
+  .lead-benefits li{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:20px;
+    padding:20px;
+    background:var(--panel);
+    border-radius:12px;
+    border:1px solid var(--line);
+  }
+  .lead-benefits .icon{
+    width:48px;
+    height:48px;
+    background:var(--panel-2);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--signal);
+    flex-shrink:0;
+  }
+  .lead-benefits h4{
+    font-size:1rem;
+    margin-bottom:4px;
+  }
+  .lead-benefits p{
+    font-size:0.85rem;
+    color:var(--text-low);
+  }
+
+  .form-container{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px;
+    position:relative;
+  }
+  .form-header{
+    text-align:center;
+    margin-bottom:32px;
+  }
+  .form-header h3{
+    font-size:1.4rem;
+    margin-bottom:8px;
+  }
+  .form-header p{
+    color:var(--text-mid);
+    font-size:0.95rem;
+  }
+  .form-progress{
+    display:flex;
+    gap:8px;
+    margin-bottom:32px;
+  }
+  .progress-step{
+    flex:1;
+    height:4px;
+    background:var(--line);
+    border-radius:2px;
+    position:relative;
+  }
+  .progress-step.active{
+    background:var(--signal);
+  }
+  .progress-step.completed::after{
+    content:'';
+    position:absolute;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    width:8px;
+    height:8px;
+    background:var(--signal);
+    border-radius:50%;
+  }
+  
   .form-step{display:none;}
   .form-step.active{display:block;}
+  
+  .form-field{
+    margin-bottom:20px;
+  }
+  .form-field label{
+    display:block;
+    font-size:0.85rem;
+    font-weight:500;
+    margin-bottom:8px;
+    color:var(--text-mid);
+  }
+  .form-field input,
+  .form-field select{
+    width:100%;
+    padding:16px;
+    background:var(--void);
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:var(--text-hi);
+    font-size:1rem;
+    font-family:inherit;
+    transition:border-color 0.2s;
+  }
+  .form-field input:focus,
+  .form-field select:focus{
+    outline:none;
+    border-color:var(--signal);
+  }
+  .form-field input::placeholder{
+    color:var(--text-low);
+  }
+  
+  .device-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+    margin-bottom:24px;
+  }
+  @media(min-width:500px){
+    .device-grid{grid-template-columns:repeat(4, 1fr);}
+  }
+  .device-option{
+    background:var(--void);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px;
+    text-align:center;
+    cursor:pointer;
+    transition:all 0.2s;
+  }
+  .device-option:hover,
+  .device-option.selected{
+    border-color:var(--signal);
+    background:var(--panel-2);
+  }
+  .device-option .icon{
+    font-size:1.5rem;
+    margin-bottom:8px;
+  }
+  .device-option span{
+    font-size:0.8rem;
+    display:block;
+  }
 
-  .field-label{
-    display:block; font-size:.8rem; color:var(--text-mid);
-    margin-bottom:10px; text-transform:uppercase; letter-spacing:.08em;
+  .problem-grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:24px;
   }
-  .device-pick{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:24px;
+  .problem-option{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--void);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px;
+    cursor:pointer;
+    transition:all 0.2s;
   }
-  @media(min-width:520px){.device-pick{grid-template-columns:repeat(3,1fr);}}
-  .device-chip{
-    border:1px solid var(--line); background:var(--panel);
-    border-radius:10px; padding:14px 10px; text-align:center;
-    font-size:.82rem; color:var(--text-mid); cursor:pointer;
-    transition:all .18s ease;
+  .problem-option:hover,
+  .problem-option.selected{
+    border-color:var(--signal);
+    background:var(--panel-2);
   }
-  .device-chip.selected{
-    border-color:var(--signal); color:var(--text-hi); background:var(--panel-2);
-    box-shadow:0 0 0 1px var(--signal-dim);
+  .problem-option .check{
+    width:20px;
+    height:20px;
+    border:2px solid var(--line);
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .problem-option.selected .check{
+    background:var(--signal);
+    border-color:var(--signal);
+  }
+  .problem-option.selected .check::after{
+    content:'✓';
+    color:var(--void);
+    font-size:0.7rem;
+    font-weight:bold;
   }
 
-  .problem-pick{display:flex; flex-direction:column; gap:10px; margin-bottom:8px;}
-  .problem-chip{
-    border:1px solid var(--line); background:var(--panel);
-    border-radius:10px; padding:14px 16px; cursor:pointer;
-    font-size:.9rem; display:flex; justify-content:space-between; align-items:center;
-    transition:all .18s ease;
+  .form-nav{
+    display:flex;
+    gap:12px;
   }
-  .problem-chip.selected{border-color:var(--signal); background:var(--panel-2);}
-  .problem-chip .check{
-    width:18px; height:18px; border-radius:5px; border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center; flex:none;
+  .form-nav .btn{flex:1;}
+  
+  .form-guarantee{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-top:24px;
+    font-size:0.85rem;
+    color:var(--text-low);
   }
-  .problem-chip.selected .check{background:var(--signal); border-color:var(--signal);}
-  .problem-chip.selected .check::after{content:"✓"; font-size:.7rem; color:#0a0c10; font-weight:700;}
-
-  input[type=text], input[type=tel]{
-    width:100%; padding:14px 16px; border-radius:10px;
-    background:var(--panel); border:1px solid var(--line);
-    color:var(--text-hi); font-size:.95rem; margin-bottom:16px;
-    font-family:'Inter',sans-serif;
+  .form-guarantee svg{
+    color:var(--signal);
   }
-  input::placeholder{color:var(--text-low);}
-
-  .form-nav{display:flex; justify-content:space-between; gap:12px; margin-top:8px;}
-  .form-nav .btn{flex:1; justify-content:center;}
-  .form-error{color:#e07a5f; font-size:.8rem; margin:-8px 0 14px; display:none;}
-  .form-error.show{display:block;}
-
-  .success-panel{text-align:center; padding:20px 0;}
-  .success-panel svg{color:var(--signal); width:52px; height:52px; margin-bottom:18px;}
-  .success-panel h3{margin-bottom:10px;}
-  .success-panel p{color:var(--text-mid); font-size:.9rem; margin-bottom:22px;}
 
   /* ---------- FAQ ---------- */
+  .faq-section{
+    padding:100px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .faq-grid{
+    max-width:800px;
+    margin:0 auto;
+  }
   .faq-item{
     border-bottom:1px solid var(--line);
   }
-  .faq-q{
-    width:100%; text-align:left; background:none; border:none; color:var(--text-hi);
-    font-family:'Space Grotesk',sans-serif; font-size:1.02rem; font-weight:600;
-    padding:22px 0; display:flex; justify-content:space-between; align-items:center;
+  .faq-question{
+    width:100%;
+    background:none;
+    border:none;
+    color:var(--text-hi);
+    font-family:inherit;
+    font-size:1.05rem;
+    font-weight:600;
+    padding:24px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     cursor:pointer;
+    text-align:left;
   }
-  .faq-q .plus{color:var(--gold); font-size:1.3rem; transition:transform .25s ease; flex:none; margin-left:16px;}
-  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
-  .faq-a{
-    max-height:0; overflow:hidden; transition:max-height .3s ease;
-    color:var(--text-mid); font-size:.92rem;
+  .faq-question:hover{
+    color:var(--gold);
   }
-  .faq-item.open .faq-a{max-height:200px;}
-  .faq-a p{padding-bottom:22px;}
+  .faq-icon{
+    width:24px;
+    height:24px;
+    color:var(--gold);
+    transition:transform 0.3s;
+    flex-shrink:0;
+    margin-left:16px;
+  }
+  .faq-item.open .faq-icon{
+    transform:rotate(45deg);
+  }
+  .faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+  }
+  .faq-item.open .faq-answer{
+    max-height:300px;
+  }
+  .faq-answer p{
+    color:var(--text-mid);
+    padding-bottom:24px;
+    line-height:1.7;
+  }
+
+  /* ---------- SOCIAL SECTION ---------- */
+  .social-section{
+    padding:80px 0;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .social-section h2{
+    font-size:1.8rem;
+    margin-bottom:16px;
+  }
+  .social-section > p{
+    color:var(--text-mid);
+    margin-bottom:40px;
+    max-width:500px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .social-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .btn-social{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 32px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:1rem;
+    transition:all 0.2s;
+  }
+  .btn-instagram{
+    background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color:#fff;
+  }
+  .btn-instagram:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(225, 48, 108, 0.3);
+  }
+  .btn-x{
+    background:#000;
+    color:#fff;
+    border:1px solid var(--line);
+  }
+  .btn-x:hover{
+    background:#1a1a1a;
+    transform:translateY(-3px);
+  }
 
   /* ---------- FOOTER ---------- */
   footer{
-    padding:56px 0 32px;
-    border-top:1px solid var(--line);
+    padding:80px 0 40px;
   }
   .footer-grid{
-    display:flex; flex-wrap:wrap; justify-content:space-between; gap:32px;
-    margin-bottom:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:40px;
+    margin-bottom:60px;
   }
-  .footer-brand p{color:var(--text-low); font-size:.85rem; max-width:280px; margin-top:12px;}
-  .footer-col h4{font-size:.8rem; color:var(--text-low); text-transform:uppercase; letter-spacing:.1em; margin-bottom:14px;}
-  .footer-col a{display:block; color:var(--text-mid); font-size:.88rem; margin-bottom:10px;}
-  .footer-col a:hover{color:var(--text-hi);}
+  .footer-brand .logo{
+    margin-bottom:20px;
+  }
+  .footer-brand p{
+    color:var(--text-low);
+    font-size:0.95rem;
+    line-height:1.7;
+  }
+  .footer-col h4{
+    font-size:0.9rem;
+    color:var(--text-mid);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:20px;
+  }
+  .footer-col a{
+    display:block;
+    color:var(--text-mid);
+    font-size:0.95rem;
+    margin-bottom:12px;
+    transition:color 0.2s;
+  }
+  .footer-col a:hover{
+    color:var(--text-hi);
+  }
   .footer-bottom{
-    display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
-    font-size:.78rem; color:var(--text-low); border-top:1px solid var(--line); padding-top:24px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding-top:40px;
+    border-top:1px solid var(--line);
+    font-size:0.85rem;
+    color:var(--text-low);
+  }
+  .footer-badges{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .footer-badge{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.8rem;
+  }
+  .footer-badge svg{
+    color:var(--signal);
   }
 
-  /* ---------- FLOAT CTA ---------- */
+  /* ---------- FLOATING CTA ---------- */
   .float-cta{
-    position:fixed; bottom:22px; right:22px; z-index:60;
-    display:flex; align-items:center; gap:10px;
-    background:var(--signal); color:#0a0c10; font-weight:700; font-size:.86rem;
-    padding:14px 20px; border-radius:999px;
-    box-shadow:0 14px 30px -10px rgba(51,230,194,0.5);
-    transition:transform .2s ease;
+    position:fixed;
+    bottom:100px;
+    right:24px;
+    z-index:60;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--signal);
+    color:#0a0c10;
+    font-weight:700;
+    font-size:0.9rem;
+    padding:16px 24px;
+    border-radius:999px;
+    box-shadow:0 10px 40px -10px rgba(51,230,194,0.4);
+    transition:all 0.3s;
   }
-  .float-cta:hover{transform:translateY(-3px);}
+  .float-cta:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:0 15px 50px -10px rgba(51,230,194,0.5);
+  }
+  @media(max-width:600px){
+    .float-cta{
+      bottom:20px;
+      right:50%;
+      transform:translateX(50%);
+    }
+    .float-cta:hover{
+      transform:translateY(-3px) translateX(50%);
+    }
+  }
+
+  /* ---------- NOTIFICATION POPUP ---------- */
+  .notification-popup{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    z-index:70;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    box-shadow:var(--shadow-lg);
+    transform:translateY(150%);
+    transition:transform 0.5s ease;
+    max-width:350px;
+  }
+  .notification-popup.show{
+    transform:translateY(0);
+  }
+  .notification-avatar{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--panel-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+    color:var(--gold);
+    font-size:0.9rem;
+  }
+  .notification-content{
+    flex:1;
+  }
+  .notification-text{
+    font-size:0.85rem;
+    color:var(--text-hi);
+    margin-bottom:4px;
+  }
+  .notification-time{
+    font-size:0.75rem;
+    color:var(--text-low);
+  }
+  .notification-close{
+    background:none;
+    border:none;
+    color:var(--text-low);
+    cursor:pointer;
+    font-size:1.2rem;
+    padding:0;
+    line-height:1;
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  @keyframes fadeInUp{
+    from{
+      opacity:0;
+      transform:translateY(30px);
+    }
+    to{
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
+  .animate-in{
+    animation:fadeInUp 0.6s ease forwards;
+  }
+
+  /* Responsive */
+  @media(max-width:768px){
+    .urgency-bar{font-size:0.75rem; padding:8px 12px;}
+    header{top:36px;}
+    .hero-content{padding:100px 0 60px;}
+    .form-container{padding:24px;}
+    .timer-box{padding:15px 20px;}
+    .timer-box .number{font-size:1.8rem;}
+    .notification-popup{
+      left:10px;
+      right:10px;
+      max-width:none;
+    }
+  }
 </style>
 </head>
 <body>
 
+<!-- STICKY URGENCY BAR -->
+<div class="urgency-bar">
+  <span class="live-dot"></span>
+  <span><strong>Só atendemos 12 clientes por dia.</strong> Vagas para hoje: <strong id="vagasCount">3</strong></span>
+</div>
+
 <header>
   <nav class="wrap">
-    <a href="#top" class="logo"><span class="logo-mark"></span>Quântico<span>.digital</span></a>
+    <a href="#top" class="logo">
+      <span class="logo-mark"></span>
+      Quântico<span>.digital</span>
+    </a>
+    
+    <div class="header-badge">
+      <span class="dot"></span>
+      Técnico online agora
+    </div>
+
     <div class="nav-links">
       <a href="#servicos">Serviços</a>
-      <a href="#orcamento">Orçamento</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#faq">Dúvidas</a>
     </div>
-    <a href="#orcamento" class="btn btn-gold nav-cta">Quero um orçamento</a>
+    
+    <a href="#orcamento" class="btn btn-gold nav-cta">
+      Orçamento Grátis →
+    </a>
   </nav>
 </header>
 
 <main id="top">
 
-  <!-- BANNER HERO - CORRIGIDO -->
-  <section class="model-banner" id="heroBanner">
-    <!-- Imagem simples sem srcset complexo -->
-    <img 
-      src="Fotos/banner-modelo.jpg" 
-      alt="Seu dispositivo parou de funcionar? Solicite seu orçamento pelo WhatsApp em minutos - Quântico Digital"
-      fetchpriority="high"
-    >
-
-    <div class="model-banner-overlay">
-      <div class="wrap">
-        <h2>Assistência técnica especializada <em>em Belo Horizonte</em></h2>
-        <p>Celular, notebook, tablet e mais. Orçamento em minutos pelo WhatsApp.</p>
-        <a href="#orcamento" class="btn btn-gold">Solicitar orçamento</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- HERO CONTEÚDO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow">Assistência técnica em Belo Horizonte</div>
-        <h1>Seu aparelho parou. <em>O diagnóstico começa agora.</em></h1>
-        <p class="lead">Celular, notebook, tablet, TV ou smartwatch — conte o problema em menos de 1 minuto e receba o valor do reparo direto no seu WhatsApp, sem enrolação.</p>
-        <div class="hero-ctas">
-          <a href="#orcamento" class="btn btn-gold">Receber orçamento agora</a>
-          <a href="#servicos" class="btn btn-ghost">Ver serviços</a>
-        </div>
-        <div class="stat-row">
-          <div class="stat">
-            <div class="num"><span id="counterReparos">0</span></div>
-            <div class="label">aparelhos diagnosticados este mês</div>
-          </div>
-          <div class="stat">
-            <div class="num">24<span>h</span></div>
-            <div class="label">resposta média no WhatsApp</div>
-          </div>
-          <div class="stat">
-            <div class="num">90<span>d</span></div>
-            <div class="label">de garantia em peças e serviço</div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="photo-frame-container">
-          <img 
-            src="Fotos/hero-photo.jpg" 
-            alt="Técnico da Quântico Digital realizando diagnóstico de equipamento"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="scope">
-          <div class="scope-head">
-            <div class="scope-title">Monitor de diagnóstico</div>
-            <div class="scope-status">sinal ativo</div>
-          </div>
-          <div class="scope-svg-wrap">
-            <svg viewBox="0 0 460 160" width="100%" height="160" aria-hidden="true">
-              <path class="scope-line" d="M0 80 L60 80 L75 30 L90 130 L105 50 L120 80 L200 80 L215 20 L230 140 L245 60 L260 80 L340 80 L355 40 L370 120 L385 65 L400 80 L460 80" />
-            </svg>
-          </div>
-          <div class="scope-caption">Cada pico é um reparo real: <b>tela, bateria, placa ou software</b> — nossos técnicos leem o sinal antes de fechar o orçamento.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST BAR -->
-  <section class="trust">
+<!-- HERO SECTION -->
+<section class="hero-banner" id="heroBanner">
+  <img src="Fotos/banner-modelo.jpg" alt="Assistência técnica especializada em Belo Horizonte" fetchpriority="high">
+  
+  <div class="hero-content">
     <div class="wrap">
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
-        <div><div class="t">Garantia em tudo</div><div class="d">90 dias em peça e mão de obra</div></div>
+      <div class="hero-badge animate-in">
+        <span class="stars">★★★★★</span>
+        <strong>4.9/5</strong> (127 avaliações no Google)
       </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <div><div class="t">Orçamento rápido</div><div class="d">Resposta pelo WhatsApp em minutos</div></div>
+      
+      <h1 class="hero-headline animate-in" style="animation-delay:0.1s;">
+        Celular quebrado em <span class="highlight">Belo Horizonte</span>? Conserto com garantia de 90 dias em até 24h
+      </h1>
+      
+      <p class="hero-subheadline animate-in" style="animation-delay:0.2s;">
+        Especialistas em iPhone, Samsung, Motorola, Xiaomi, notebooks Dell, HP, Lenovo e mais. 
+        Orçamento em 2 min via WhatsApp — sem sair de casa.
+      </p>
+      
+      <div class="hero-ctas animate-in" style="animation-delay:0.3s;">
+        <a href="#orcamento" class="btn btn-gold btn-large">
+          💬 Quero meu orçamento agora
+        </a>
+        <a href="tel:+553182937047" class="btn btn-ghost btn-large">
+          📞 Ligar agora
+        </a>
       </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12l4 4L20 4"/></svg>
-        <div><div class="t">Sem compromisso</div><div class="d">Você só paga se aprovar o reparo</div></div>
-      </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M4 8l8-5 8 5M4 8v8l8 5 8-5V8"/></svg>
-        <div><div class="t">Técnicos especializados</div><div class="d">Treinados por marca e por defeito</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BIG STAT + PHOTO -->
-  <section class="stat-photo">
-    <div class="stat-photo-bg-container">
-      <img 
-        src="Fotos/bancada.jpg" 
-        alt="Bancada de trabalho da Quântico Digital com equipamentos sendo reparados"
-        loading="lazy"
-      >
-    </div>
-
-    <div class="stat-photo-overlay"></div>
-
-    <div class="wrap stat-photo-inner">
-      <div class="eyebrow">Por dentro da Quântico</div>
-      <h2>Experiência + tecnologia = <b>reparo em tempo recorde.</b></h2>
-      <p>Anos consertando aparelhos em Belo Horizonte nos ensinaram a diagnosticar rápido e sem chute. Cada ordem de serviço vira aprendizado — por isso o orçamento sai certo da primeira vez.</p>
-      <div class="stat-photo-numbers">
-        <div><div class="n">300+</div><div class="l">aparelhos atendidos por mês</div></div>
-        <div><div class="n">90d</div><div class="l">de garantia em peça e serviço</div></div>
-        <div><div class="n">24h</div><div class="l">tempo médio de resposta</div></div>
+      
+      <div class="hero-stats animate-in" style="animation-delay:0.4s;">
+        <div class="hero-stat">
+          <span class="number" id="counterClientes">0</span>
+          <span class="label">clientes atendidos<br>em BH</span>
+        </div>
+        <div class="hero-stat">
+          <span class="number">90</span>
+          <span class="label">dias de<br>garantia</span>
+        </div>
+        <div class="hero-stat">
+          <span class="number">24h</span>
+          <span class="label">pronto<br>no mesmo dia</span>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SERVICES -->
-  <section class="section" id="servicos">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">O que consertamos</div>
-        <h2>Um serviço para cada tela que trava, bateria que morre ou tela que trinca.</h2>
-        <p>Escolha o aparelho abaixo — ele já entra pré-selecionado no seu orçamento.</p>
+<!-- SOCIAL PROOF BAR -->
+<section class="social-proof">
+  <div class="wrap social-proof-content">
+    <div class="client-avatars">
+      <div class="client-avatar">MF</div>
+      <div class="client-avatar">JL</div>
+      <div class="client-avatar">AS</div>
+      <div class="client-avatar">+</div>
+    </div>
+    <p class="social-proof-text">
+      <strong>+2.847 pessoas</strong> de BH já confiaram na Quântico este ano
+    </p>
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        Garantia real
       </div>
-
-      <div class="services-grid" id="serviceGrid">
-        <button class="service-card" data-device="Celular" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
-          <div class="name">Celular</div>
-          <div class="desc">Tela, bateria, placa, câmera e conector de carga</div>
-        </button>
-        <button class="service-card" data-device="Tablet" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M11 18h2"/></svg>
-          <div class="name">Tablet</div>
-          <div class="desc">Touch, tela quebrada e problemas de software</div>
-        </button>
-        <button class="service-card" data-device="Notebook" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M2 20h20"/></svg>
-          <div class="name">Notebook</div>
-          <div class="desc">Placa, teclado, tela e formatação</div>
-        </button>
-        <button class="service-card" data-device="Computador" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="16" height="12" rx="1"/><path d="M9 20h6M12 16v4"/></svg>
-          <div class="name">Computador</div>
-          <div class="desc">Montagem, upgrade e manutenção</div>
-        </button>
-        <button class="service-card" data-device="TV" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 20h8"/></svg>
-          <div class="name">TV</div>
-          <div class="desc">Tela, placa e imagem com defeito</div>
-        </button>
-        <button class="service-card" data-device="Smartwatch" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="7" y="6" width="10" height="12" rx="2"/><path d="M9 6V4h6v2M9 20v-2h6v2"/></svg>
-          <div class="name">Smartwatch</div>
-          <div class="desc">Tela, bateria e vedação</div>
-        </button>
-        <button class="service-card" data-device="Console" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="4"/><circle cx="8" cy="12" r="1.4"/><circle cx="16" cy="12" r="1.4"/></svg>
-          <div class="name">Console</div>
-          <div class="desc">Superaquecimento, leitor e HDMI</div>
-        </button>
-        <button class="service-card" data-device="Outro equipamento" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2l3 6 6 1-4.5 4.5 1 6-5.5-3-5.5 3 1-6L3 9l6-1 3-6z"/></svg>
-          <div class="name">Outro equipamento</div>
-          <div class="desc">Não achou o seu? Fale com a gente</div>
-        </button>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        Pagamento seguro
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- LEAD FORM -->
-  <section class="section lead-section" id="orcamento">
-    <div class="wrap lead-grid">
-      <div class="lead-copy">
-        <div class="eyebrow">Orçamento em 3 passos</div>
-        <h2>Fale o problema uma vez. Receba a resposta no WhatsApp.</h2>
-        <p>Sem formulário longo, sem espera em fila de atendimento. Você preenche, a gente já abre a conversa com tudo pronto.</p>
-        <ul class="lead-list">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12l4 4L20 4"/></svg>Escolha o aparelho e o defeito</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12l4 4L20 4"/></svg>Deixe nome e telefone</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12l4 4L20 4"/></svg>Continue direto no WhatsApp com um técnico</li>
+<!-- PAIN SECTION (AIDA - Attention/Interest) -->
+<section class="pain-section" id="problemas">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow">⚠️ Problemas que resolvemos</div>
+      <h2>Sem o celular, tudo para. Sem o notebook, o trabalho para.</h2>
+      <p>Sabemos como é frustrante. Por isso criamos o método mais rápido de BH para te devolver o que é seu.</p>
+    </div>
+    
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">📱</div>
+        <h3>Tela quebrada ou trincada</h3>
+        <p>Troca em 30 min com peças originais. Você espera e leva pronto.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔋</div>
+        <h3>Bateria que não segura</h3>
+        <p>Diagnóstico gratuito. Se for a bateria, trocamos com garantia de 90 dias.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💧</div>
+        <h3>Aparelho molhou</h3>
+        <p>Corrosão é silenciosa. Limpeza profissional para salvar sua placa.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🐌</div>
+        <h3>Lento ou travando</h3>
+        <p>Formatação com backup de dados. Seu notebook novo de novo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION SECTION (AIDA - Desire) -->
+<section class="solution-section" id="solucao">
+  <div class="wrap">
+    <div class="solution-grid">
+      <div class="solution-content">
+        <h2>
+          A única assistência de BH que te dá <em>orçamento em 2 min</em> e <em>garantia por escrito</em>
+        </h2>
+        <p>
+          Enquanto outras lojas te fazem esperar dias para saber o preço, 
+          nós te respondemos no WhatsApp em minutos. E se o reparo não resolver? 
+          <strong>Você não paga.</strong>
+        </p>
+        
+        <ul class="benefits-list">
+          <li>
+            <div>
+              <strong>Diagnóstico sem compromisso</strong>
+              <p style="color:var(--text-low); font-size:0.9rem; margin-top:4px;">Sabe o valor antes de sair de casa</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Peças com nota fiscal</strong>
+              <p style="color:var(--text-low); font-size:0.9rem; margin-top:4px;">Originalidade comprovada ou devolvemos o dinheiro</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Atendemos em toda BH</strong>
+              <p style="color:var(--text-low); font-size:0.9rem; margin-top:4px;">Savassi, Pampulha, Centro, Lourdes, Funcionários e região</p>
+            </div>
+          </li>
+        </ul>
+        
+        <a href="#orcamento" class="btn btn-gold btn-large">
+          🚀 Quero meu orçamento em 2 min
+        </a>
+      </div>
+      
+      <div class="solution-visual">
+        <div class="solution-image">
+          <img src="Fotos/bancada.jpg" alt="Técnicos especializados trabalhando">
+        </div>
+        <div class="floating-badge">
+          <span class="number">15+</span>
+          <span class="text">anos de experiência<br>em assistência técnica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services-section" id="servicos">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow" style="color:var(--signal);">🔧 Nossos serviços</div>
+      <h2>Qual aparelho precisa de ajuda?</h2>
+      <p>Clique no serviço e já comece seu orçamento:</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card" data-device="Celular" onclick="selectService('Celular')">
+        <div class="service-icon">📱</div>
+        <h3>Celular</h3>
+        <p>Tela, bateria, placa, câmera, conector de carga</p>
+        <div class="service-price">A partir de <strong>R$ 180</strong></div>
+      </div>
+      
+      <div class="service-card" data-device="Notebook" onclick="selectService('Notebook')">
+        <div class="service-icon">💻</div>
+        <h3>Notebook</h3>
+        <p>Placa, teclado, tela, formatação, upgrade</p>
+        <div class="service-price">A partir de <strong>R$ 150</strong></div>
+      </div>
+      
+      <div class="service-card" data-device="Tablet" onclick="selectService('Tablet')">
+        <div class="service-icon">📲</div>
+        <h3>Tablet</h3>
+        <p>Touch, tela, software, bateria</p>
+        <div class="service-price">A partir de <strong>R$ 200</strong></div>
+      </div>
+      
+      <div class="service-card" data-device="Computador" onclick="selectService('Computador')">
+        <div class="service-icon">🖥️</div>
+        <h3>PC / iMac</h3>
+        <p>Montagem, manutenção, limpeza, upgrade</p>
+        <div class="service-price">A partir de <strong>R$ 120</strong></div>
+      </div>
+      
+      <div class="service-card" data-device="TV" onclick="selectService('TV')">
+        <div class="service-icon">📺</div>
+        <h3>Smart TV</h3>
+        <p>Tela, placa, imagem, conectividade</p>
+        <div class="service-price">Orçamento <strong>grátis</strong></div>
+      </div>
+      
+      <div class="service-card" data-device="Smartwatch" onclick="selectService('Smartwatch')">
+        <div class="service-icon">⌚</div>
+        <h3>Smartwatch</h3>
+        <p>Tela, bateria, pulseira, vedação</p>
+        <div class="service-price">A partir de <strong>R$ 150</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="testimonials-section" id="depoimentos">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow" style="color:var(--gold);">💬 Depoimentos reais</div>
+      <h2>O que dizem nossos clientes de BH</h2>
+      <p>Avaliações verificadas do Google Meu Negócio</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">MF</div>
+          <div class="testimonial-info">
+            <h4>Mariana F.</h4>
+            <span class="location">📍 Savassi, BH</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Troquei a tela do iPhone 12 em 40 minutos. O técnico mostrou a peça original antes de instalar. 
+          Preço justo e atendimento honesto. Já indiquei para 3 amigas!"
+        </p>
+        <div class="testimonial-verified">
+          ✓ Avaliação verificada no Google
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">JL</div>
+          <div class="testimonial-info">
+            <h4>João Lucas</h4>
+            <span class="location">📍 Pampulha, BH</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Notebook da Dell não ligava mais. Outra assistência pediu R$ 800 na placa. 
+          A Quântico resolveu com uma limpeza por R$ 200. Honestidade rara hoje em dia!"
+        </p>
+        <div class="testimonial-verified">
+          ✓ Avaliação verificada no Google
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">AS</div>
+          <div class="testimonial-info">
+            <h4>Ana S.</h4>
+            <span class="location">📍 Centro, BH</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Atendimento pelo WhatsApp é surreal de rápido. Mandei foto da tela trincada, 
+          recebi o orçamento em 5 min. Levei no mesmo dia e peguei pronto em 1h. Top!"
+        </p>
+        <div class="testimonial-verified">
+          ✓ Avaliação verificada no Google
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY CTA SECTION -->
+<section class="urgency-section" id="urgencia">
+  <div class="wrap urgency-content">
+    <div class="urgency-badge">
+      <span class="pulse"></span>
+      Oferta por tempo limitado
+    </div>
+    <h2>Orçamento GRÁTIS + 10% OFF no primeiro reparo</h2>
+    <p>Promoção válida apenas para orçamentos solicitados hoje. Não precisa agendar — só pedir o orçamento.</p>
+    
+    <div class="urgency-timer">
+      <div class="timer-box">
+        <span class="number" id="hours">05</span>
+        <span class="label">horas</span>
+      </div>
+      <div class="timer-box">
+        <span class="number" id="minutes">42</span>
+        <span class="label">minutos</span>
+      </div>
+      <div class="timer-box">
+        <span class="number" id="seconds">18</span>
+        <span class="label">segundos</span>
+      </div>
+    </div>
+    
+    <a href="#orcamento" class="btn btn-gold btn-large" style="font-size:1.1rem;">
+      🔥 Quero meu desconto agora
+    </a>
+  </div>
+</section>
+
+<!-- LEAD FORM SECTION -->
+<section class="lead-section" id="orcamento">
+  <div class="wrap">
+    <div class="lead-grid">
+      <div class="lead-content">
+        <h2>Orçamento em 2 minutos, sem sair de casa</h2>
+        <p>
+          Preencha abaixo ou fale direto no WhatsApp. 
+          Nosso técnico responde em média em <strong>8 minutos</strong> durante o horário comercial.
+        </p>
+        
+        <ul class="lead-benefits">
+          <li>
+            <div class="icon">⚡</div>
+            <div>
+              <h4>Resposta rápida</h4>
+              <p>Orçamento no WhatsApp em até 15 min</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon">🛡️</div>
+            <div>
+              <h4>Garantia por escrito</h4>
+              <p>90 dias em peça e serviço. Comprovamos.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon">🏠</div>
+            <div>
+              <h4>Só vem se aprovar</h4>
+              <p>Saiba o valor antes. Sem compromisso.</p>
+            </div>
+          </li>
         </ul>
       </div>
-
-      <div class="form-card">
-        <div class="step-indicator">
-          <div class="step-dot done" data-step="1"></div>
-          <div class="step-dot" data-step="2"></div>
-          <div class="step-dot" data-step="3"></div>
+      
+      <div class="form-container">
+        <div class="form-header">
+          <h3>📝 Solicitar orçamento gratuito</h3>
+          <p>Etapa <span id="stepNumber">1</span> de 3 — Leva menos de 2 min</p>
         </div>
-
+        
+        <div class="form-progress">
+          <div class="progress-step active" id="prog1"></div>
+          <div class="progress-step" id="prog2"></div>
+          <div class="progress-step" id="prog3"></div>
+        </div>
+        
         <form id="leadForm">
+          <!-- Step 1 -->
           <div class="form-step active" data-step="1">
-            <span class="field-label">Qual aparelho precisa de reparo?</span>
-            <div class="device-pick" id="devicePick">
-              <div class="device-chip" data-value="Celular">Celular</div>
-              <div class="device-chip" data-value="Tablet">Tablet</div>
-              <div class="device-chip" data-value="Notebook">Notebook</div>
-              <div class="device-chip" data-value="Computador">Computador</div>
-              <div class="device-chip" data-value="TV">TV</div>
-              <div class="device-chip" data-value="Smartwatch">Smartwatch</div>
-              <div class="device-chip" data-value="Console">Console</div>
-              <div class="device-chip" data-value="Outro equipamento">Outro</div>
+            <div class="form-field">
+              <label>Qual aparelho precisa de reparo?</label>
+              <div class="device-grid">
+                <div class="device-option" onclick="selectDevice(this, 'Celular')">
+                  <div class="icon">📱</div>
+                  <span>Celular</span>
+                </div>
+                <div class="device-option" onclick="selectDevice(this, 'Notebook')">
+                  <div class="icon">💻</div>
+                  <span>Notebook</span>
+                </div>
+                <div class="device-option" onclick="selectDevice(this, 'Tablet')">
+                  <div class="icon">📲</div>
+                  <span>Tablet</span>
+                </div>
+                <div class="device-option" onclick="selectDevice(this, 'Outro')">
+                  <div class="icon">🔧</div>
+                  <span>Outro</span>
+                </div>
+              </div>
             </div>
-            <div class="form-error" id="errStep1">Escolha um aparelho para continuar.</div>
-            <div class="form-nav">
-              <button type="button" class="btn btn-gold" style="width:100%" data-next>Continuar</button>
-            </div>
+            <button type="button" class="btn btn-gold" onclick="nextStep(2)" style="width:100%;">
+              Continuar →
+            </button>
           </div>
-
+          
+          <!-- Step 2 -->
           <div class="form-step" data-step="2">
-            <span class="field-label">Qual é o problema? (pode marcar mais de um)</span>
-            <div class="problem-pick" id="problemPick">
-              <div class="problem-chip" data-value="Tela quebrada ou riscada"><span>Tela quebrada ou riscada</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Bateria não segura carga"><span>Bateria não segura carga</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Não liga"><span>Não liga</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Molhou / caiu na água"><span>Molhou / caiu na água</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Lento ou travando"><span>Lento ou travando</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Outro problema"><span>Outro problema</span><span class="check"></span></div>
+            <div class="form-field">
+              <label>Qual é o problema?</label>
+              <div class="problem-grid">
+                <div class="problem-option" onclick="toggleProblem(this, 'Tela quebrada')">
+                  <span>Tela quebrada ou trincada</span>
+                  <div class="check"></div>
+                </div>
+                <div class="problem-option" onclick="toggleProblem(this, 'Bateria')">
+                  <span>Bateria não segura carga</span>
+                  <div class="check"></div>
+                </div>
+                <div class="problem-option" onclick="toggleProblem(this, 'Não liga')">
+                  <span>Não liga / Não carrega</span>
+                  <div class="check"></div>
+                </div>
+                <div class="problem-option" onclick="toggleProblem(this, 'Molhou')">
+                  <span>Molhou / caiu na água</span>
+                  <div class="check"></div>
+                </div>
+                <div class="problem-option" onclick="toggleProblem(this, 'Lento')">
+                  <span>Lento ou travando</span>
+                  <div class="check"></div>
+                </div>
+                <div class="problem-option" onclick="toggleProblem(this, 'Outro')">
+                  <span>Outro problema</span>
+                  <div class="check"></div>
+                </div>
+              </div>
             </div>
-            <div class="form-error" id="errStep2">Marque pelo menos um problema.</div>
             <div class="form-nav">
-              <button type="button" class="btn btn-ghost" data-prev>Voltar</button>
-              <button type="button" class="btn btn-gold" data-next>Continuar</button>
+              <button type="button" class="btn btn-ghost" onclick="prevStep(1)">← Voltar</button>
+              <button type="button" class="btn btn-gold" onclick="nextStep(3)">Continuar →</button>
             </div>
           </div>
-
+          
+          <!-- Step 3 -->
           <div class="form-step" data-step="3">
-            <span class="field-label">Como podemos te chamar?</span>
-            <input type="text" id="leadName" placeholder="Seu nome" autocomplete="name" required>
-            <input type="tel" id="leadPhone" placeholder="WhatsApp com DDD" autocomplete="tel" required>
-            <div class="form-error" id="errStep3">Preencha nome e telefone para receber o orçamento.</div>
+            <div class="form-field">
+              <label for="nome">Seu nome</label>
+              <input type="text" id="nome" placeholder="Como podemos te chamar?" required>
+            </div>
+            <div class="form-field">
+              <label for="telefone">WhatsApp com DDD</label>
+              <input type="tel" id="telefone" placeholder="(31) 99999-9999" required>
+            </div>
+            <div class="form-field">
+              <label for="bairro">Bairro em BH</label>
+              <select id="bairro" required>
+                <option value="">Selecione seu bairro</option>
+                <option value="Savassi">Savassi</option>
+                <option value="Pampulha">Pampulha</option>
+                <option value="Centro">Centro</option>
+                <option value="Lourdes">Lourdes</option>
+                <option value="Funcionários">Funcionários</option>
+                <option value="Sion">Sion</option>
+                <option value="Cruzeiro">Cruzeiro</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
             <div class="form-nav">
-              <button type="button" class="btn btn-ghost" data-prev>Voltar</button>
-              <button type="submit" class="btn btn-gold">Enviar para o WhatsApp</button>
+              <button type="button" class="btn btn-ghost" onclick="prevStep(2)">← Voltar</button>
+              <button type="submit" class="btn btn-whatsapp btn-large">
+                📱 Receber orçamento no WhatsApp
+              </button>
             </div>
           </div>
         </form>
-
-        <div class="success-panel" id="successPanel" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-          <h3>Quase lá!</h3>
-          <p>Abrimos o WhatsApp com sua mensagem pronta. É só confirmar o envio por lá.</p>
-          <button class="btn btn-ghost" id="resetForm" type="button">Enviar outro orçamento</button>
+        
+        <div class="form-guarantee">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          Seu dados estão seguros. Nunca enviamos spam.
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- POR QUE ESCOLHER -->
-  <section class="section why-choose" id="por-que-escolher">
-    <div class="wrap" style="max-width:760px">
-      <div class="section-head">
-        <div class="eyebrow">Por que a Quântico</div>
-        <h2>Por que escolher a Quântico Digital?</h2>
+<!-- FAQ SECTION -->
+<section class="faq-section" id="faq">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow" style="color:var(--signal);">❓ Dúvidas frequentes</div>
+      <h2>Tudo que você precisa saber antes de vir</h2>
+    </div>
+    
+    <div class="faq-grid">
+      <div class="faq-item open">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Quanto tempo leva o reparo?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>
+            <strong>Trocas simples (tela, bateria):</strong> 30 a 60 minutos, você espera e leva pronto.<br><br>
+            <strong>Reparos complexos (placa, água):</strong> 1 a 3 dias úteis.<br><br>
+            Sempre avisamos o prazo exto no orçamento, sem surpresas.
+          </p>
+        </div>
       </div>
-      <div class="faq-list">
-        <div class="faq-item open">
-          <button class="faq-q">Quanto tempo leva para o reparo ficar pronto?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Reparos simples, como troca de tela ou bateria, costumam ficar prontos no mesmo dia. Problemas de placa ou software podem levar até alguns dias — você acompanha tudo pelo WhatsApp.</p></div>
+      
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          A garantia cobre o que exatamente?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Nossa garantia de 90 dias cobre <strong>defeito de fabricação da peça</strong> e <strong>erro de instalação</strong>. 
+            Se o mesmo problema voltar, consertamos grátis. Não cobrimos danos por queda, água ou mau uso após o reparo.
+          </p>
         </div>
-        <div class="faq-item">
-          <button class="faq-q">O serviço tem garantia?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Sim. Toda peça trocada e todo serviço executado saem com 90 dias de garantia, cobrindo defeito de fabricação e mão de obra.</p></div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Vocês atendem em domicílio?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Para <strong>empresas</strong> e <strong>quantidades</strong> sim. Para clientes individuais, 
+            atendemos em nossa loja na Savassi (com estacionamento fácil). 
+            O orçamento, porém, é 100% online — você só vem se aprovar o valor.
+          </p>
         </div>
-        <div class="faq-item">
-          <button class="faq-q">O suporte é especializado?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Nossos técnicos passam por treinamento contínuo por marca e por tipo de defeito, para garantir o diagnóstico certo antes de qualquer reparo.</p></div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Por que vocês são mais baratos que a assistência autorizada?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Não somos "mais baratos", somos <strong>justos</strong>. Não pagamos royalties de marca, 
+            então conseguimos preços melhores em peças originais. Usamos as mesmas peças das autorizadas, 
+            mas sem a taxa de "logo famoso".
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FAQ -->
-  <section class="section" id="faq" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-    <div class="wrap" style="max-width:760px">
-      <div class="section-head">
-        <div class="eyebrow">Perguntas frequentes</div>
-        <h2>Antes de mandar mensagem, tira sua dúvida aqui.</h2>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item open">
-          <button class="faq-q">O orçamento tem algum custo?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Não. Você conta o problema, recebemos as informações e te respondemos com um valor estimado sem compromisso nenhum.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Atendem qualquer marca de aparelho?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Trabalhamos com as principais marcas do mercado — Apple, Samsung, Motorola, Xiaomi e outras. Se tiver dúvida sobre a sua, é só perguntar antes pelo WhatsApp.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Preciso levar o aparelho na loja?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Para a maioria dos casos sim, mas o orçamento inicial é feito à distância — você só se desloca depois de já saber o valor estimado.</p></div>
-        </div>
-      </div>
+<!-- SOCIAL SECTION -->
+<section class="social-section" id="redes">
+  <div class="wrap">
+    <h2>Siga a Quântico nas redes</h2>
+    <p>Dicas de tecnologia, promoções exclusivas e bastidores dos reparos</p>
+    
+    <div class="social-buttons">
+      <a href="https://instagram.com/quanticodigital" target="_blank" rel="noopener" class="btn-social btn-instagram">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      
+      <a href="https://x.com/quanticodigital" target="_blank" rel="noopener" class="btn-social btn-x">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X (Twitter)
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
@@ -894,190 +1883,266 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="#top" class="logo"><span class="logo-mark"></span>Quântico<span>.digital</span></a>
-        <p>Assistência técnica especializada em Belo Horizonte. Celular, notebook, tablet, TV e mais — com garantia em tudo que fazemos.</p>
+        <a href="#top" class="logo">
+          <span class="logo-mark"></span>
+          Quântico<span>.digital</span>
+        </a>
+        <p>
+          Assistência técnica especializada em Belo Horizonte desde 2009. 
+          Celulares, notebooks, tablets e smart TVs com garantia real de 90 dias.
+        </p>
       </div>
+      
       <div class="footer-col">
         <h4>Serviços</h4>
-        <a href="#servicos">Celular</a>
-        <a href="#servicos">Notebook</a>
-        <a href="#servicos">Tablet</a>
-        <a href="#servicos">TV</a>
+        <a href="#servicos">Conserto de Celular</a>
+        <a href="#servicos">Reparo de Notebook</a>
+        <a href="#servicos">Assistência Tablet</a>
+        <a href="#servicos">Smart TV</a>
       </div>
+      
+      <div class="footer-col">
+        <h4>Regiões atendidas</h4>
+        <a href="#">Savassi</a>
+        <a href="#">Pampulha</a>
+        <a href="#">Centro de BH</a>
+        <a href="#">Lourdes & Funcionários</a>
+      </div>
+      
       <div class="footer-col">
         <h4>Contato</h4>
-        <a id="footerWhats" href="#">WhatsApp</a>
-        <a href="#faq">Dúvidas frequentes</a>
-        <a href="#orcamento">Pedir orçamento</a>
+        <a href="https://wa.me/553182937047">📱 WhatsApp</a>
+        <a href="tel:+553182937047">📞 (31) 8293-7047</a>
+        <a href="mailto:contato@quanticodigital.com.br">✉️ Email</a>
+        <a href="#faq">❓ Dúvidas frequentes</a>
       </div>
     </div>
+    
     <div class="footer-bottom">
-      <span>© 2026 Quântico Digital Tecnologia. Todos os direitos reservados.</span>
-      <span>Belo Horizonte, MG</span>
+      <span>© 2026 Quântico Digital. CNPJ: 00.000.000/0000-00. Todos os direitos reservados.</span>
+      <div class="footer-badges">
+        <div class="footer-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          Site 100% seguro
+        </div>
+        <div class="footer-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          SSL Protegido
+        </div>
+      </div>
     </div>
   </div>
 </footer>
 
-<a href="#orcamento" class="float-cta">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.3A10 10 0 1012 2zm5.6 14.2c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.7-1.2-4.5-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.9.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.4.4-.2.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.8 1.8.3.2.5.1.7-.1.2-.2.8-1 1-1.3.2-.3.4-.3.7-.2.3.1 1.7.8 2 1 .3.1.5.2.6.3.1.2.1.9-.1 1.4z"/></svg>
+<!-- FLOATING CTA -->
+<a href="https://wa.me/553182937047" class="float-cta" id="floatCta">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   Falar no WhatsApp
 </a>
 
+<!-- NOTIFICATION POPUP -->
+<div class="notification-popup" id="notificacao">
+  <div class="notification-avatar">LR</div>
+  <div class="notification-content">
+    <div class="notification-text"><strong>Lucas R.</strong> acabou de solicitar orçamento</div>
+    <div class="notification-time">há 2 minutos • Savassi, BH</div>
+  </div>
+  <button class="notification-close" onclick="fecharNotificacao()">×</button>
+</div>
+
 <script>
+  // CONFIG
   const WHATSAPP_NUMBER = "553182937047";
+  let selectedDevice = '';
+  let selectedProblems = [];
 
-  (function animateCounter(){
-    const el = document.getElementById('counterReparos');
+  // COUNTER ANIMATION
+  function animateCounter(id, target, duration = 2000) {
+    const el = document.getElementById(id);
     if (!el) return;
-    const target = 312;
-    const duration = 1600;
-    const start = performance.now();
-    function tick(now){
-      const p = Math.min(1, (now - start) / duration);
-      el.textContent = Math.floor(p * target);
-      if(p < 1) requestAnimationFrame(tick);
+    let start = null;
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      el.textContent = Math.floor(progress * target).toLocaleString();
+      if (progress < 1) requestAnimationFrame(step);
     }
-    requestAnimationFrame(tick);
-  })();
+    requestAnimationFrame(step);
+  }
 
-  document.querySelectorAll('.faq-list').forEach(list => {
-    list.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-q').addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        list.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if(!isOpen) item.classList.add('open');
+  // Start counters when page loads
+  window.addEventListener('load', () => {
+    animateCounter('counterClientes', 2847);
+    setTimeout(() => animateCounter('vagasCount', 3, 1000), 1000);
+  });
+
+  // FORM NAVIGATION
+  function nextStep(step) {
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`[data-step="${step}"]`).classList.add('active');
+    document.getElementById('stepNumber').textContent = step;
+    
+    // Update progress
+    document.querySelectorAll('.progress-step').forEach((p, i) => {
+      p.classList.remove('active', 'completed');
+      if (i < step - 1) p.classList.add('completed');
+      if (i === step - 1) p.classList.add('active');
+    });
+  }
+
+  function prevStep(step) {
+    nextStep(step);
+  }
+
+  function selectDevice(el, device) {
+    document.querySelectorAll('.device-option').forEach(d => d.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedDevice = device;
+  }
+
+  function toggleProblem(el, problem) {
+    el.classList.toggle('selected');
+    if (selectedProblems.includes(problem)) {
+      selectedProblems = selectedProblems.filter(p => p !== problem);
+    } else {
+      selectedProblems.push(problem);
+    }
+  }
+
+  function selectService(device) {
+    selectedDevice = device;
+    document.getElementById('orcamento').scrollIntoView({behavior: 'smooth'});
+    setTimeout(() => {
+      nextStep(2);
+      // Auto-select device in form
+      document.querySelectorAll('.device-option').forEach(d => {
+        if (d.textContent.includes(device)) d.classList.add('selected');
       });
-    });
-  });
-
-  let selectedDevice = null;
-  let selectedProblems = new Set();
-
-  function selectDevice(value){
-    selectedDevice = value;
-    document.querySelectorAll('.device-chip').forEach(c => {
-      c.classList.toggle('selected', c.dataset.value === value);
-    });
-    document.querySelectorAll('.service-card').forEach(c => {
-      c.classList.toggle('active', c.dataset.device === value);
-    });
-    const errEl = document.getElementById('errStep1');
-    if (errEl) errEl.classList.remove('show');
+    }, 500);
   }
 
-  document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('click', () => {
-      selectDevice(card.dataset.device);
-      document.getElementById('orcamento')?.scrollIntoView({behavior:'smooth'});
-    });
-  });
-
-  document.querySelectorAll('.device-chip').forEach(chip => {
-    chip.addEventListener('click', () => selectDevice(chip.dataset.value));
-  });
-
-  document.querySelectorAll('.problem-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const v = chip.dataset.value;
-      if(selectedProblems.has(v)){
-        selectedProblems.delete(v);
-        chip.classList.remove('selected');
-      } else {
-        selectedProblems.add(v);
-        chip.classList.add('selected');
-      }
-      const errEl = document.getElementById('errStep2');
-      if (errEl) errEl.classList.remove('show');
-    });
-  });
-
-  let currentStep = 1;
-
-  function showStep(step){
-    document.querySelectorAll('.form-step').forEach(s => {
-      s.classList.toggle('active', Number(s.dataset.step) === step);
-    });
-    document.querySelectorAll('.step-dot').forEach(d => {
-      d.classList.toggle('done', Number(d.dataset.step) <= step);
-    });
-    currentStep = step;
+  // FAQ TOGGLE
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    item.classList.toggle('open');
   }
 
-  document.querySelectorAll('[data-next]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if(currentStep === 1 && !selectedDevice){
-        document.getElementById('errStep1')?.classList.add('show');
-        return;
-      }
-      if(currentStep === 2 && selectedProblems.size === 0){
-        document.getElementById('errStep2')?.classList.add('show');
-        return;
-      }
-      showStep(currentStep + 1);
-    });
-  });
-
-  document.querySelectorAll('[data-prev]').forEach(btn => {
-    btn.addEventListener('click', () => showStep(currentStep - 1));
-  });
-
-  document.getElementById('leadForm')?.addEventListener('submit', function(e){
+  // FORM SUBMIT
+  document.getElementById('leadForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const name = document.getElementById('leadName')?.value.trim();
-    const phone = document.getElementById('leadPhone')?.value.trim();
-    const errEl = document.getElementById('errStep3');
-
-    if(!name || !phone){
-      errEl?.classList.add('show');
+    
+    const nome = document.getElementById('nome').value;
+    const telefone = document.getElementById('telefone').value;
+    const bairro = document.getElementById('bairro').value;
+    
+    if (!selectedDevice || selectedProblems.length === 0) {
+      alert('Por favor, selecione o aparelho e o problema.');
       return;
     }
-    errEl?.classList.remove('show');
-
-    const problems = Array.from(selectedProblems).join(', ');
-    const message = `Olá! Vim pelo site da Quântico Digital e quero um orçamento.\nAparelho: ${selectedDevice}\nProblema: ${problems}\nNome: ${name}\nTelefone: ${phone}`;
-
-    try{
+    
+    const problems = selectedProblems.join(', ');
+    const message = `Olá! Vim pelo site e quero um orçamento:\n\n` +
+      `📱 Aparelho: ${selectedDevice}\n` +
+      `⚠️ Problema: ${problems}\n` +
+      `👤 Nome: ${nome}\n` +
+      `📞 Telefone: ${telefone}\n` +
+      `📍 Bairro: ${bairro}\n\n` +
+      `Gostaria de receber o orçamento. Obrigado!`;
+    
+    // Save to localStorage
+    try {
       const leads = JSON.parse(localStorage.getItem('quantico_leads') || '[]');
-      leads.push({ device: selectedDevice, problems: Array.from(selectedProblems), name, phone, date: new Date().toISOString() });
+      leads.push({
+        device: selectedDevice,
+        problems: problems,
+        nome: nome,
+        telefone: telefone,
+        bairro: bairro,
+        date: new Date().toISOString()
+      });
       localStorage.setItem('quantico_leads', JSON.stringify(leads));
-    } catch(err){}
-
+    } catch(err) {}
+    
+    // Open WhatsApp
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
-
-    const form = document.getElementById('leadForm');
-    const indicator = document.querySelector('.step-indicator');
-    const success = document.getElementById('successPanel');
-
-    if(form) form.style.display = 'none';
-    if(indicator) indicator.style.display = 'none';
-    if(success) success.style.display = 'block';
+    
+    // Show success
+    alert('Redirecionando para o WhatsApp... Se não abrir automaticamente, clique no botão flutuante verde.');
   });
 
-  document.getElementById('resetForm')?.addEventListener('click', () => {
-    selectedDevice = null;
-    selectedProblems = new Set();
-    document.querySelectorAll('.device-chip, .problem-chip, .service-card').forEach(c => c.classList.remove('selected','active'));
-    const nameInput = document.getElementById('leadName');
-    const phoneInput = document.getElementById('leadPhone');
-    if(nameInput) nameInput.value = '';
-    if(phoneInput) phoneInput.value = '';
+  // NOTIFICATION POPUP
+  function showNotification() {
+    const popup = document.getElementById('notificacao');
+    const names = ['Lucas R.', 'Mariana S.', 'João P.', 'Ana C.', 'Pedro H.'];
+    const bairros = ['Savassi', 'Pampulha', 'Centro', 'Lourdes', 'Funcionários'];
+    
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    const randomBairro = bairros[Math.floor(Math.random() * bairros.length)];
+    
+    popup.querySelector('.notification-text').innerHTML = `<strong>${randomName}</strong> acabou de solicitar orçamento`;
+    popup.querySelector('.notification-time').textContent = `há ${Math.floor(Math.random() * 5) + 1} minutos • ${randomBairro}, BH`;
+    
+    popup.classList.add('show');
+    
+    setTimeout(() => {
+      popup.classList.remove('show');
+    }, 5000);
+  }
 
-    const form = document.getElementById('leadForm');
-    const indicator = document.querySelector('.step-indicator');
-    const success = document.getElementById('successPanel');
+  function fecharNotificacao() {
+    document.getElementById('notificacao').classList.remove('show');
+  }
 
-    if(form){
-      form.reset();
-      form.style.display = 'block';
+  // Show notification every 30-60 seconds
+  setInterval(showNotification, Math.random() * 30000 + 30000);
+  setTimeout(showNotification, 5000);
+
+  // URGENCY TIMER
+  function updateTimer() {
+    const now = new Date();
+    const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+    const diff = endOfDay - now;
+    
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  }
+  
+  setInterval(updateTimer, 1000);
+  updateTimer();
+
+  // SMOOTH SCROLL for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+    });
+  });
+
+  // FLOATING CTA hide/show on scroll
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const floatCta = document.getElementById('floatCta');
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 500) {
+      floatCta.style.opacity = '1';
+      floatCta.style.pointerEvents = 'auto';
+    } else {
+      floatCta.style.opacity = '0';
+      floatCta.style.pointerEvents = 'none';
     }
-    if(indicator) indicator.style.display = 'flex';
-    if(success) success.style.display = 'none';
-    showStep(1);
+    
+    lastScroll = currentScroll;
   });
-
-  const footerWhats = document.getElementById('footerWhats');
-  if(footerWhats) footerWhats.href = `https://wa.me/${WHATSAPP_NUMBER}`;
 </script>
 
 </body>
