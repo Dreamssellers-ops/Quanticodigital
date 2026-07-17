@@ -30,7 +30,7 @@
     --text-low:#6b7180;
     --radius: 14px;
   }
-  
+
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -40,20 +40,20 @@
     line-height:1.5;
     overflow-x:hidden;
   }
-  
+
   h1,h2,h3,.display{
     font-family:'Space Grotesk',sans-serif;
     letter-spacing:-0.01em;
   }
   .mono{font-family:'JetBrains Mono',monospace;}
   a{color:inherit;text-decoration:none;}
-  
+
   .wrap{
     max-width:1180px;
     margin:0 auto;
     padding:0 24px;
   }
-  
+
   ::selection{background:var(--gold-dim);color:var(--text-hi);}
 
   /* ---------- NAV ---------- */
@@ -119,7 +119,7 @@
     border-bottom:1px solid var(--line);
     background: var(--panel);
   }
-  
+
   /* Desktop: altura maior */
   @media(min-width: 1024px){
     .model-banner{
@@ -134,7 +134,14 @@
     width:100%; 
     height:100%;
     object-fit:cover;
-    object-position: center center;
+    object-position: 20% center; /* Ajuste para focar na esquerda no mobile */
+  }
+
+  /* Retorna ao centro em telas maiores (desktop) */
+  @media(min-width: 768px){
+    .model-banner img {
+      object-position: center center;
+    }
   }
 
   /* Overlay responsivo */
@@ -153,7 +160,7 @@
     padding:40px 24px;
     z-index: 1;
   }
-  
+
   /* Desktop: gradiente lateral */
   @media(min-width: 768px){
     .model-banner-overlay{
@@ -167,7 +174,7 @@
       padding:0 24px;
     }
   }
-  
+
   .model-banner-overlay .wrap{width:100%;}
   .model-banner-overlay h2{
     font-size:clamp(1.8rem, 5vw, 2.8rem); 
@@ -176,13 +183,13 @@
     margin-bottom:16px;
     color: var(--text-hi);
   }
-  
+
   @media(min-width: 768px){
     .model-banner-overlay h2{
       max-width:500px;
     }
   }
-  
+
   .model-banner-overlay h2 em{font-style:normal; color:var(--gold);}
   .model-banner-overlay p{
     color:var(--text-mid); 
@@ -191,7 +198,7 @@
     font-size:1rem;
     line-height: 1.5;
   }
-  
+
   @media(min-width: 768px){
     .model-banner-overlay p{
       max-width:420px;
@@ -298,7 +305,7 @@
     overflow: hidden;
     background: var(--panel);
   }
-  
+
   .photo-frame-container img {
     width: 100%;
     height: 100%;
@@ -317,25 +324,25 @@
     overflow:hidden;
     min-height: 450px;
   }
-  
+
   @media(min-width: 768px){
     .stat-photo{min-height: 400px;}
   }
-  
+
   .stat-photo-bg-container {
     position:absolute; 
     inset:0;
     overflow: hidden;
     z-index: 0;
   }
-  
+
   .stat-photo-bg-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
   }
-  
+
   .stat-photo-overlay {
     position: absolute;
     inset: 0;
@@ -346,7 +353,7 @@
     );
     z-index: 1;
   }
-  
+
   @media(min-width: 768px){
     .stat-photo-overlay{
       background: linear-gradient(
@@ -357,18 +364,18 @@
       );
     }
   }
-  
+
   .stat-photo-inner{
     position:relative; 
     padding:60px 0; 
     max-width:640px;
     z-index: 2;
   }
-  
+
   @media(min-width: 768px){
     .stat-photo-inner{padding:80px 0;}
   }
-  
+
   .stat-photo-inner .eyebrow{margin-bottom:16px;}
   .stat-photo-inner h2{font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:18px; line-height:1.15;}
   .stat-photo-inner h2 b{color:var(--gold);}
@@ -453,7 +460,7 @@
     padding:24px;
   }
   @media(min-width:640px){.form-card{padding:32px;}}
-  
+
   .step-indicator{
     display:flex; gap:8px; margin-bottom:26px;
   }
@@ -591,7 +598,7 @@
       alt="Seu dispositivo parou de funcionar? Solicite seu orçamento pelo WhatsApp em minutos - Quântico Digital"
       fetchpriority="high"
     >
-    
+
     <div class="model-banner-overlay">
       <div class="wrap">
         <h2>Assistência técnica especializada <em>em Belo Horizonte</em></h2>
@@ -684,9 +691,9 @@
         loading="lazy"
       >
     </div>
-    
+
     <div class="stat-photo-overlay"></div>
-    
+
     <div class="wrap stat-photo-inner">
       <div class="eyebrow">Por dentro da Quântico</div>
       <h2>Experiência + tecnologia = <b>reparo em tempo recorde.</b></h2>
@@ -1041,7 +1048,7 @@
     const form = document.getElementById('leadForm');
     const indicator = document.querySelector('.step-indicator');
     const success = document.getElementById('successPanel');
-    
+
     if(form) form.style.display = 'none';
     if(indicator) indicator.style.display = 'none';
     if(success) success.style.display = 'block';
@@ -1055,11 +1062,11 @@
     const phoneInput = document.getElementById('leadPhone');
     if(nameInput) nameInput.value = '';
     if(phoneInput) phoneInput.value = '';
-    
+
     const form = document.getElementById('leadForm');
     const indicator = document.querySelector('.step-indicator');
     const success = document.getElementById('successPanel');
-    
+
     if(form){
       form.reset();
       form.style.display = 'block';
