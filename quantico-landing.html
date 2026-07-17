@@ -1,962 +1,173 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quântico Digital | Assistência Técnica Especializada em BH</title>
-<meta name="description" content="Conserto de celular, notebook, tablet, TV e mais. Orçamento sem compromisso em minutos, direto no WhatsApp.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --void:#0a0c10;
-    --panel:#13171d;
-    --panel-2:#1b2028;
-    --line: rgba(255,255,255,0.08);
-    --gold:#c9973f;
-    --gold-dim: rgba(201,151,63,0.35);
-    --signal:#33e6c2;
-    --signal-dim: rgba(51,230,194,0.25);
-    --text-hi:#f2efe9;
-    --text-mid:#a9afb8;
-    --text-low:#6b7180;
-    --radius: 14px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--void);
-    color:var(--text-hi);
-    font-family:'Inter',sans-serif;
-    line-height:1.5;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,.display{
-    font-family:'Space Grotesk',sans-serif;
-    letter-spacing:-0.01em;
-  }
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
-  ::selection{background:var(--gold-dim);color:var(--text-hi);}
-
-  /* focus visibility */
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
-    outline:2px solid var(--signal);
-    outline-offset:3px;
-  }
-
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(10,12,16,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav.wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height:76px;
-  }
-  .logo{
-    font-family:'Space Grotesk',sans-serif;
-    font-weight:700; font-size:1.15rem;
-    display:flex; align-items:center; gap:10px;
-  }
-  .logo-mark{
-    width:12px;height:12px;border-radius:50%;
-    background:var(--signal);
-    box-shadow:0 0 12px 2px var(--signal-dim);
-    animation:pulse-dot 2.4s ease-in-out infinite;
-  }
-  @keyframes pulse-dot{
-    0%,100%{opacity:1; transform:scale(1);}
-    50%{opacity:.5; transform:scale(.8);}
-  }
-  .logo span{color:var(--gold);}
-  .nav-links{display:flex; gap:32px; align-items:center;}
-  .nav-links a{color:var(--text-mid); font-size:.92rem; transition:color .2s;}
-  .nav-links a:hover{color:var(--text-hi);}
-  .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:12px 22px; border-radius:999px;
-    font-weight:600; font-size:.92rem;
-    border:1px solid transparent; cursor:pointer;
-    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
-    white-space:nowrap;
-  }
-  .btn-gold{
-    background:var(--gold); color:#141008;
-  }
-  .btn-gold:hover{transform:translateY(-2px); box-shadow:0 8px 24px -6px var(--gold-dim);}
-  .btn-ghost{
-    border-color:var(--line); color:var(--text-hi); background:transparent;
-  }
-  .btn-ghost:hover{border-color:var(--gold-dim); background:var(--panel);}
-  .nav-cta{display:none;}
-  @media(min-width:860px){.nav-cta{display:inline-flex;}}
-  .nav-links{display:none;}
-  @media(min-width:860px){.nav-links{display:flex;}}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    padding:96px 0 72px;
-    border-bottom:1px solid var(--line);
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid; grid-template-columns:1fr; gap:56px; align-items:center;
-  }
-  @media(min-width:960px){
-    .hero-grid{grid-template-columns:1.05fr .95fr;}
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    color:var(--signal); font-size:.8rem; font-weight:600;
-    text-transform:uppercase; letter-spacing:.12em;
-    margin-bottom:18px;
-  }
-  .eyebrow::before{content:"";width:18px;height:1px;background:var(--signal);}
-  .hero h1{
-    font-size:clamp(2.1rem, 4.6vw, 3.4rem);
-    font-weight:700; line-height:1.08;
-    margin-bottom:22px;
-  }
-  .hero h1 em{
-    font-style:normal; color:var(--gold);
-  }
-  .hero p.lead{
-    color:var(--text-mid); font-size:1.08rem; max-width:520px; margin-bottom:32px;
-  }
-  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:40px;}
-  .stat-row{display:flex; gap:34px; flex-wrap:wrap;}
-  .stat{min-width:120px;}
-  .stat .num{font-family:'JetBrains Mono',monospace; font-size:1.6rem; font-weight:700; color:var(--text-hi);}
-  .stat .num span{color:var(--signal);}
-  .stat .label{font-size:.78rem; color:var(--text-low); margin-top:2px;}
-
-  /* diagnostic scope panel */
-  .scope{
-    position:relative;
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:28px 24px 22px;
-    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
-  }
-  .scope-head{
-    display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:14px;
-  }
-  .scope-title{font-size:.78rem; color:var(--text-low); text-transform:uppercase; letter-spacing:.1em;}
-  .scope-status{
-    font-size:.72rem; color:var(--signal); display:flex; align-items:center; gap:6px;
-  }
-  .scope-status::before{
-    content:""; width:6px;height:6px;border-radius:50%; background:var(--signal);
-    box-shadow:0 0 8px 1px var(--signal-dim);
-  }
-  .scope-svg-wrap{
-    background:linear-gradient(180deg, var(--panel-2), var(--panel));
-    border-radius:10px; border:1px solid var(--line);
-    padding:6px 0;
-  }
-  .scope-line{
-    stroke:var(--signal);
-    stroke-width:2;
-    fill:none;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    filter:drop-shadow(0 0 6px var(--signal-dim));
-  }
-  .scope-caption{
-    margin-top:16px; font-size:.85rem; color:var(--text-mid);
-  }
-  .scope-caption b{color:var(--text-hi); font-weight:600;}
-
-  @media (prefers-reduced-motion: no-preference){
-    .scope-line{
-      stroke-dasharray: 1200;
-      stroke-dashoffset: 1200;
-      animation: draw-line 3.2s linear infinite;
-    }
-    @keyframes draw-line{
-      0%{stroke-dashoffset:1200;}
-      70%{stroke-dashoffset:0;}
-      100%{stroke-dashoffset:-1200;}
-    }
-  }
-
-  /* ---------- PHOTO FRAME (hero) ---------- */
-  /* SUBSTITUA A FOTO: troque a div.photo-frame por <img src="Fotos/sua-foto.jpg" class="photo-frame-img"> */
-  .photo-frame{
-    position:relative;
-    border-radius:var(--radius);
-    border:1px solid var(--line);
-    background:
-      repeating-linear-gradient(45deg, var(--panel-2) 0 2px, transparent 2px 14px),
-      var(--panel);
-    aspect-ratio:16/10;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center;
-    padding:24px;
-    margin-bottom:18px;
-    overflow:hidden;
-  }
-  .photo-frame .hint{
-    color:var(--text-low); font-size:.8rem; max-width:220px;
-  }
-  .photo-frame .hint b{color:var(--text-mid); display:block; margin-bottom:6px; font-size:.85rem;}
-  .photo-frame-img{
-    width:100%; height:100%; object-fit:cover; border-radius:var(--radius);
-    border:1px solid var(--line); margin-bottom:18px; aspect-ratio:16/10;
-  }
-
-  /* ---------- BIG STAT + PHOTO (padrão Conserta Smart) ---------- */
-  .stat-photo{
-    position:relative;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    background:var(--panel);
-    overflow:hidden;
-  }
-  .stat-photo-bg{
-    position:absolute; inset:0;
-    background-image:url('Fotos/bancada.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.15; /* Adicionei uma leve transparência para o texto branco ficar legível por cima da foto */
-  }
-  /* SUBSTITUA A FOTO: troque o background acima por background-image:url('Fotos/bancada.jpg') */
-  .stat-photo-inner{
-    position:relative; padding:80px 0; max-width:640px;
-  }
-  .stat-photo-inner .eyebrow{margin-bottom:16px;}
-  .stat-photo-inner h2{font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:18px; line-height:1.15;}
-  .stat-photo-inner h2 b{color:var(--gold);}
-  .stat-photo-inner p{color:var(--text-mid); margin-bottom:28px;}
-  .stat-photo-numbers{display:flex; gap:36px; flex-wrap:wrap;}
-  .stat-photo-numbers .n{font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:700; color:var(--signal);}
-  .stat-photo-numbers .l{font-size:.78rem; color:var(--text-low); margin-top:4px; max-width:140px;}
-
-  /* ---------- WHY CHOOSE (accordion, estilo "Por que escolher a Conserta Smart") ---------- */
-  .why-choose .faq-item{border-color:var(--line);}
-  .why-choose .faq-q{font-size:1.05rem;}
-
-  /* ---------- TRUST BAR ---------- */
-  .trust{
-    border-bottom:1px solid var(--line);
-    background:var(--panel);
-  }
-  .trust .wrap{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
-    padding:28px 24px;
-  }
-  @media(min-width:760px){.trust .wrap{grid-template-columns:repeat(4,1fr);}}
-  .trust-item{display:flex; gap:12px; align-items:flex-start;}
-  .trust-item svg{flex:none; margin-top:2px; color:var(--gold);}
-  .trust-item .t{font-size:.88rem; font-weight:600; color:var(--text-hi);}
-  .trust-item .d{font-size:.78rem; color:var(--text-low);}
-
-  /* ---------- SERVICES ---------- */
-  .section{padding:88px 0;}
-  .section-head{max-width:620px; margin-bottom:48px;}
-  .section-head .eyebrow{margin-bottom:14px;}
-  .section-head h2{font-size:clamp(1.6rem, 3vw, 2.2rem); margin-bottom:14px;}
-  .section-head p{color:var(--text-mid);}
-
-  .services-grid{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
-  }
-  @media(min-width:700px){.services-grid{grid-template-columns:repeat(3,1fr);}}
-  @media(min-width:1000px){.services-grid{grid-template-columns:repeat(4,1fr);}}
-
-  .service-card{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:26px 20px;
-    cursor:pointer;
-    color:var(--text-hi);
-    font-family:'Inter',sans-serif;
-    transition:border-color .2s ease, transform .2s ease, background .2s ease;
-    text-align:left;
-    display:flex; flex-direction:column; gap:14px;
-  }
-  .service-card:hover, .service-card.active{
-    border-color:var(--gold-dim);
-    background:var(--panel-2);
-    transform:translateY(-3px);
-  }
-  .service-card svg{color:var(--signal); width:30px; height:30px;}
-  .service-card .name{font-weight:600; font-size:.98rem; color:var(--gold);}
-  .service-card .desc{font-size:.8rem; color:var(--text-hi);}
-
-  /* ---------- LEAD FORM ---------- */
-  .lead-section{
-    background:var(--panel);
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-  }
-  .lead-grid{
-    display:grid; grid-template-columns:1fr; gap:40px;
-  }
-  @media(min-width:960px){.lead-grid{grid-template-columns:.85fr 1.15fr;}}
-  .lead-copy h2{font-size:clamp(1.6rem,3vw,2.1rem); margin-bottom:16px;}
-  .lead-copy p{color:var(--text-mid); margin-bottom:24px; max-width:440px;}
-  .lead-list{display:flex; flex-direction:column; gap:14px;}
-  .lead-list li{
-    list-style:none; display:flex; gap:10px; align-items:flex-start;
-    font-size:.9rem; color:var(--text-mid);
-  }
-  .lead-list li svg{color:var(--signal); flex:none; margin-top:3px;}
-
-  .form-card{
-    background:var(--void);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:32px;
-  }
-  .step-indicator{
-    display:flex; gap:8px; margin-bottom:26px;
-  }
-  .step-dot{
-    flex:1; height:3px; border-radius:2px; background:var(--line);
-    transition:background .3s ease;
-  }
-  .step-dot.done{background:var(--signal);}
-
-  .form-step{display:none;}
-  .form-step.active{display:block;}
-
-  .field-label{
-    display:block; font-size:.8rem; color:var(--text-mid);
-    margin-bottom:10px; text-transform:uppercase; letter-spacing:.08em;
-  }
-  .device-pick{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:24px;
-  }
-  @media(min-width:520px){.device-pick{grid-template-columns:repeat(3,1fr);}}
-  .device-chip{
-    border:1px solid var(--line); background:var(--panel);
-    border-radius:10px; padding:14px 10px; text-align:center;
-    font-size:.82rem; color:var(--text-mid); cursor:pointer;
-    transition:all .18s ease;
-  }
-  .device-chip.selected{
-    border-color:var(--signal); color:var(--text-hi); background:var(--panel-2);
-    box-shadow:0 0 0 1px var(--signal-dim);
-  }
-
-  .problem-pick{display:flex; flex-direction:column; gap:10px; margin-bottom:8px;}
-  .problem-chip{
-    border:1px solid var(--line); background:var(--panel);
-    border-radius:10px; padding:14px 16px; cursor:pointer;
-    font-size:.9rem; display:flex; justify-content:space-between; align-items:center;
-    transition:all .18s ease;
-  }
-  .problem-chip.selected{border-color:var(--signal); background:var(--panel-2);}
-  .problem-chip .check{
-    width:18px; height:18px; border-radius:5px; border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center; flex:none;
-  }
-  .problem-chip.selected .check{background:var(--signal); border-color:var(--signal);}
-  .problem-chip.selected .check::after{content:"✓"; font-size:.7rem; color:#0a0c10; font-weight:700;}
-
-  input[type=text], input[type=tel]{
-    width:100%; padding:14px 16px; border-radius:10px;
-    background:var(--panel); border:1px solid var(--line);
-    color:var(--text-hi); font-size:.95rem; margin-bottom:16px;
-    font-family:'Inter',sans-serif;
-  }
-  input::placeholder{color:var(--text-low);}
-
-  .form-nav{display:flex; justify-content:space-between; gap:12px; margin-top:8px;}
-  .form-nav .btn{flex:1; justify-content:center;}
-  .form-error{color:#e07a5f; font-size:.8rem; margin:-8px 0 14px; display:none;}
-  .form-error.show{display:block;}
-
-  .success-panel{text-align:center; padding:20px 0;}
-  .success-panel svg{color:var(--signal); width:52px; height:52px; margin-bottom:18px;}
-  .success-panel h3{margin-bottom:10px;}
-  .success-panel p{color:var(--text-mid); font-size:.9rem; margin-bottom:22px;}
-
-  /* ---------- MODEL BANNER (largura total, estilo slider Conserta Smart) ---------- */
-  /* TAMANHO RECOMENDADO DA FOTO: proporção 2.02:1 (mesma da imagem atual, 2912x1440px).
-     Se trocar a foto depois, gere sempre nessa mesma proporção pra não cortar nada. */
-  .model-banner{
-    position:relative;
-    width:100%;
-    aspect-ratio:2912/1440;
-    overflow:hidden;
-    border-bottom:1px solid var(--line);
-    background:
-      repeating-linear-gradient(135deg, var(--panel-2) 0 2px, var(--panel) 2px 26px);
-  }
-  .model-banner-img{
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    object-fit:cover;
-    object-position:center;
-  }
-  .model-banner-placeholder{
-    position:absolute; inset:16px;
-    border:2px dashed var(--gold-dim);
-    border-radius:10px;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center; padding:20px;
-  }
-  .model-banner-placeholder .txt{max-width:360px;}
-  .model-banner-placeholder .txt b{display:block; color:var(--text-hi); font-size:1rem; margin-bottom:8px; font-family:'Space Grotesk',sans-serif;}
-  .model-banner-placeholder .txt span{color:var(--text-low); font-size:.85rem;}
-  .model-banner-placeholder .txt .dim{
-    display:block; margin-top:10px; font-family:'JetBrains Mono',monospace;
-    color:var(--signal); font-size:.82rem;
-  }
-  .model-banner-overlay{
-    position:absolute; inset:0;
-    background:linear-gradient(90deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.65) 38%, rgba(10,12,16,0.1) 68%);
-    display:flex; align-items:center;
-    padding:0 24px;
-  }
-  .model-banner-overlay .wrap{width:100%;}
-  .model-banner-overlay h2{
-    font-size:clamp(1.6rem,4vw,2.6rem); max-width:440px; line-height:1.15; margin-bottom:14px;
-  }
-  .model-banner-overlay h2 em{font-style:normal; color:var(--gold);}
-  .model-banner-overlay p{color:var(--text-mid); max-width:380px; margin-bottom:22px; font-size:.95rem;}
-
-  /* ---------- FAQ ---------- */
-  .faq-item{
-    border-bottom:1px solid var(--line);
-  }
-  .faq-q{
-    width:100%; text-align:left; background:none; border:none; color:var(--text-hi);
-    font-family:'Space Grotesk',sans-serif; font-size:1.02rem; font-weight:600;
-    padding:22px 0; display:flex; justify-content:space-between; align-items:center;
-    cursor:pointer;
-  }
-  .faq-q .plus{color:var(--gold); font-size:1.3rem; transition:transform .25s ease; flex:none; margin-left:16px;}
-  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
-  .faq-a{
-    max-height:0; overflow:hidden; transition:max-height .3s ease;
-    color:var(--text-mid); font-size:.92rem;
-  }
-  .faq-item.open .faq-a{max-height:200px;}
-  .faq-a p{padding-bottom:22px;}
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    padding:56px 0 32px;
-    border-top:1px solid var(--line);
-  }
-  .footer-grid{
-    display:flex; flex-wrap:wrap; justify-content:space-between; gap:32px;
-    margin-bottom:40px;
-  }
-  .footer-brand p{color:var(--text-low); font-size:.85rem; max-width:280px; margin-top:12px;}
-  .footer-col h4{font-size:.8rem; color:var(--text-low); text-transform:uppercase; letter-spacing:.1em; margin-bottom:14px;}
-  .footer-col a{display:block; color:var(--text-mid); font-size:.88rem; margin-bottom:10px;}
-  .footer-col a:hover{color:var(--text-hi);}
-  .footer-bottom{
-    display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
-    font-size:.78rem; color:var(--text-low); border-top:1px solid var(--line); padding-top:24px;
-  }
-
-  /* floating whatsapp button */
-  .float-cta{
-    position:fixed; bottom:22px; right:22px; z-index:60;
-    display:flex; align-items:center; gap:10px;
-    background:var(--signal); color:#0a0c10; font-weight:700; font-size:.86rem;
-    padding:14px 20px; border-radius:999px;
-    box-shadow:0 14px 30px -10px rgba(51,230,194,0.5);
-    transition:transform .2s ease;
-  }
-  .float-cta:hover{transform:translateY(-3px);}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Assistência técnica especializada em Belo Horizonte. Conserto de celular, notebook, tablet, TV e mais com orçamento rápido via WhatsApp.">
+    <title>Quântico Digital | Assistência Técnica em BH - Orçamento em Minutos</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0c10;
+            --panel: #13171d;
+            --accent: #00e6c3;
+            --gold: #d4af37;
+            --text: #f0f0f0;
+            --text-light: #a0a0a0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.1; }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 12, 16, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 120px 0 100px;
+            background: linear-gradient(135deg, #0a0c10, #1a1f2e);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        @media (min-width: 900px) {
+            .hero-content { grid-template-columns: 1.1fr 0.9fr; }
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            margin-bottom: 24px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 520px;
+            margin-bottom: 32px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 230, 195, 0.4);
+        }
+        
+        /* Trust Bar */
+        .trust-bar {
+            background: #13171d;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        /* Services */
+        .services {
+            padding: 100px 0;
+            background: var(--panel);
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .service-card {
+            background: #1c2129;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(0, 230, 195, 0.15);
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+        
+        /* Floating WhatsApp */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            text-decoration: none;
+        }
+        
+        /* Outros estilos podem ser expandidos conforme necessário */
+    </style>
 </head>
 <body>
 
 <header>
-  <nav class="wrap">
-    <a href="#top" class="logo"><span class="logo-mark"></span>Quântico<span>.digital</span></a>
-    <div class="nav-links">
-      <a href="#servicos">Serviços</a>
-      <a href="#orcamento">Orçamento</a>
-      <a href="#faq">Dúvidas</a>
-    </div>
-    <a href="#orcamento" class="btn btn-gold nav-cta">Quero um orçamento</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <!-- ---------------- MODEL BANNER ---------------- -->
-  <section class="model-banner">
-    <img src="Fotos/banner-modelo.jpg" alt="Seu dispositivo parou de funcionar? Solicite seu orçamento pelo WhatsApp em minutos - Quântico Digital" class="model-banner-img">
-  </section>
-
-  <!-- ---------------- HERO ---------------- -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow">Assistência técnica em Belo Horizonte</div>
-        <h1>Seu aparelho parou. <em>O diagnóstico começa agora.</em></h1>
-        <p class="lead">Celular, notebook, tablet, TV ou smartwatch — conte o problema em menos de 1 minuto e receba o valor do reparo direto no seu WhatsApp, sem enrolação.</p>
-        <div class="hero-ctas">
-          <a href="#orcamento" class="btn btn-gold">Receber orçamento agora</a>
-          <a href="#servicos" class="btn btn-ghost">Ver serviços</a>
-        </div>
-        <div class="stat-row">
-          <div class="stat">
-            <div class="num"><span id="counterReparos">0</span></div>
-            <div class="label">aparelhos diagnosticados este mês</div>
-          </div>
-          <div class="stat">
-            <div class="num">24<span>h</span></div>
-            <div class="label">resposta média no WhatsApp</div>
-          </div>
-          <div class="stat">
-            <div class="num">90<span>d</span></div>
-            <div class="label">de garantia em peças e serviço</div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-      <div class="scope">
-        <div class="scope-head">
-          <div class="scope-title">Monitor de diagnóstico</div>
-          <div class="scope-status">sinal ativo</div>
-        </div>
-        <div class="scope-svg-wrap">
-          <svg viewBox="0 0 460 160" width="100%" height="160">
-            <path class="scope-line" d="M0 80 L60 80 L75 30 L90 130 L105 50 L120 80 L200 80 L215 20 L230 140 L245 60 L260 80 L340 80 L355 40 L370 120 L385 65 L400 80 L460 80" />
-          </svg>
-        </div>
-        <div class="scope-caption">Cada pico é um reparo real: <b>tela, bateria, placa ou software</b> — nossos técnicos leem o sinal antes de fechar o orçamento.</div>
-      </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ---------------- TRUST ---------------- -->
-  <section class="trust">
-    <div class="wrap">
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
-        <div><div class="t">Garantia em tudo</div><div class="d">90 dias em peça e mão de obra</div></div>
-      </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <div><div class="t">Orçamento rápido</div><div class="d">Resposta pelo WhatsApp em minutos</div></div>
-      </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12l4 4L20 4"/></svg>
-        <div><div class="t">Sem compromisso</div><div class="d">Você só paga se aprovar o reparo</div></div>
-      </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M4 8l8-5 8 5M4 8v8l8 5 8-5V8"/></svg>
-        <div><div class="t">Técnicos especializados</div><div class="d">Treinados por marca e por defeito</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ---------------- BIG STAT + PHOTO (padrão Conserta Smart) ---------------- -->
-  <section class="stat-photo">
-    <!-- SUBSTITUA A FOTO: dê um background-image na .stat-photo-bg lá no CSS -->
-    <div class="stat-photo-bg"></div>
-    <div class="wrap stat-photo-inner">
-      <div class="eyebrow">Por dentro da Quântico</div>
-      <h2>Experiência + tecnologia = <b>reparo em tempo recorde.</b></h2>
-      <p>Anos consertando aparelhos em Belo Horizonte nos ensinaram a diagnosticar rápido e sem chute. Cada ordem de serviço vira aprendizado — por isso o orçamento sai certo da primeira vez.</p>
-      <div class="stat-photo-numbers">
-        <div><div class="n">300+</div><div class="l">aparelhos atendidos por mês</div></div>
-        <div><div class="n">90d</div><div class="l">de garantia em peça e serviço</div></div>
-        <div><div class="n">24h</div><div class="l">tempo médio de resposta</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ---------------- SERVICES ---------------- -->
-  <section class="section" id="servicos">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">O que consertamos</div>
-        <h2>Um serviço para cada tela que trava, bateria que morre ou tela que trinca.</h2>
-        <p>Escolha o aparelho abaixo — ele já entra pré-selecionado no seu orçamento.</p>
-      </div>
-
-      <div class="services-grid" id="serviceGrid">
-        <button class="service-card" data-device="Celular">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
-          <div class="name">Celular</div>
-          <div class="desc">Tela, bateria, placa, câmera e conector de carga</div>
-        </button>
-        <button class="service-card" data-device="Tablet">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M11 18h2"/></svg>
-          <div class="name">Tablet</div>
-          <div class="desc">Touch, tela quebrada e problemas de software</div>
-        </button>
-        <button class="service-card" data-device="Notebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M2 20h20"/></svg>
-          <div class="name">Notebook</div>
-          <div class="desc">Placa, teclado, tela e formatação</div>
-        </button>
-        <button class="service-card" data-device="Computador">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="12" rx="1"/><path d="M9 20h6M12 16v4"/></svg>
-          <div class="name">Computador</div>
-          <div class="desc">Montagem, upgrade e manutenção</div>
-        </button>
-        <button class="service-card" data-device="TV">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 20h8"/></svg>
-          <div class="name">TV</div>
-          <div class="desc">Tela, placa e imagem com defeito</div>
-        </button>
-        <button class="service-card" data-device="Smartwatch">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="6" width="10" height="12" rx="2"/><path d="M9 6V4h6v2M9 20v-2h6v2"/></svg>
-          <div class="name">Smartwatch</div>
-          <div class="desc">Tela, bateria e vedação</div>
-        </button>
-        <button class="service-card" data-device="Console">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="8" width="20" height="8" rx="4"/><circle cx="8" cy="12" r="1.4"/><circle cx="16" cy="12" r="1.4"/></svg>
-          <div class="name">Console</div>
-          <div class="desc">Superaquecimento, leitor e HDMI</div>
-        </button>
-        <button class="service-card" data-device="Outro equipamento">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 6 6 1-4.5 4.5 1 6-5.5-3-5.5 3 1-6L3 9l6-1 3-6z"/></svg>
-          <div class="name">Outro equipamento</div>
-          <div class="desc">Não achou o seu? Fale com a gente</div>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ---------------- LEAD FORM ---------------- -->
-  <section class="section lead-section" id="orcamento">
-    <div class="wrap lead-grid">
-      <div class="lead-copy">
-        <div class="eyebrow">Orçamento em 3 passos</div>
-        <h2>Fale o problema uma vez. Receba a resposta no WhatsApp.</h2>
-        <p>Sem formulário longo, sem espera em fila de atendimento. Você preenche, a gente já abre a conversa com tudo pronto.</p>
-        <ul class="lead-list">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l4 4L20 4"/></svg>Escolha o aparelho e o defeito</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l4 4L20 4"/></svg>Deixe nome e telefone</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l4 4L20 4"/></svg>Continue direto no WhatsApp com um técnico</li>
-        </ul>
-      </div>
-
-      <div class="form-card">
-        <div class="step-indicator">
-          <div class="step-dot done" data-step="1"></div>
-          <div class="step-dot" data-step="2"></div>
-          <div class="step-dot" data-step="3"></div>
-        </div>
-
-        <form id="leadForm">
-          <!-- STEP 1: device -->
-          <div class="form-step active" data-step="1">
-            <span class="field-label">Qual aparelho precisa de reparo?</span>
-            <div class="device-pick" id="devicePick">
-              <div class="device-chip" data-value="Celular">Celular</div>
-              <div class="device-chip" data-value="Tablet">Tablet</div>
-              <div class="device-chip" data-value="Notebook">Notebook</div>
-              <div class="device-chip" data-value="Computador">Computador</div>
-              <div class="device-chip" data-value="TV">TV</div>
-              <div class="device-chip" data-value="Smartwatch">Smartwatch</div>
-              <div class="device-chip" data-value="Console">Console</div>
-              <div class="device-chip" data-value="Outro equipamento">Outro</div>
-            </div>
-            <div class="form-error" id="errStep1">Escolha um aparelho para continuar.</div>
-            <div class="form-nav">
-              <button type="button" class="btn btn-gold" style="width:100%" data-next>Continuar</button>
-            </div>
-          </div>
-
-          <!-- STEP 2: problem -->
-          <div class="form-step" data-step="2">
-            <span class="field-label">Qual é o problema? (pode marcar mais de um)</span>
-            <div class="problem-pick" id="problemPick">
-              <div class="problem-chip" data-value="Tela quebrada ou riscada"><span>Tela quebrada ou riscada</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Bateria não segura carga"><span>Bateria não segura carga</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Não liga"><span>Não liga</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Molhou / caiu na água"><span>Molhou / caiu na água</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Lento ou travando"><span>Lento ou travando</span><span class="check"></span></div>
-              <div class="problem-chip" data-value="Outro problema"><span>Outro problema</span><span class="check"></span></div>
-            </div>
-            <div class="form-error" id="errStep2">Marque pelo menos um problema.</div>
-            <div class="form-nav">
-              <button type="button" class="btn btn-ghost" data-prev>Voltar</button>
-              <button type="button" class="btn btn-gold" data-next>Continuar</button>
-            </div>
-          </div>
-
-          <!-- STEP 3: contact -->
-          <div class="form-step" data-step="3">
-            <span class="field-label">Como podemos te chamar?</span>
-            <input type="text" id="leadName" placeholder="Seu nome" autocomplete="name">
-            <input type="tel" id="leadPhone" placeholder="WhatsApp com DDD" autocomplete="tel">
-            <div class="form-error" id="errStep3">Preencha nome e telefone para receber o orçamento.</div>
-            <div class="form-nav">
-              <button type="button" class="btn btn-ghost" data-prev>Voltar</button>
-              <button type="submit" class="btn btn-gold">Enviar para o WhatsApp</button>
-            </div>
-          </div>
-        </form>
-
-        <div class="success-panel" id="successPanel" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-          <h3>Quase lá!</h3>
-          <p>Abrimos o WhatsApp com sua mensagem pronta. É só confirmar o envio por lá.</p>
-          <button class="btn btn-ghost" id="resetForm" type="button">Enviar outro orçamento</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ---------------- POR QUE ESCOLHER ---------------- -->
-  <section class="section why-choose" id="por-que-escolher">
-    <div class="wrap" style="max-width:760px">
-      <div class="section-head">
-        <div class="eyebrow">Por que a Quântico</div>
-        <h2>Por que escolher a Quântico Digital?</h2>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item open">
-          <button class="faq-q">Quanto tempo leva para o reparo ficar pronto?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Reparos simples, como troca de tela ou bateria, costumam ficar prontos no mesmo dia. Problemas de placa ou software podem levar até alguns dias — você acompanha tudo pelo WhatsApp.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">O serviço tem garantia?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Sim. Toda peça trocada e todo serviço executado saem com 90 dias de garantia, cobrindo defeito de fabricação e mão de obra.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">O suporte é especializado?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Nossos técnicos passam por treinamento contínuo por marca e por tipo de defeito, para garantir o diagnóstico certo antes de qualquer reparo.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ---------------- FAQ ---------------- -->
-  <section class="section" id="faq" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-    <div class="wrap" style="max-width:760px">
-      <div class="section-head">
-        <div class="eyebrow">Perguntas frequentes</div>
-        <h2>Antes de mandar mensagem, tira sua dúvida aqui.</h2>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item open">
-          <button class="faq-q">O orçamento tem algum custo?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Não. Você conta o problema, recebemos as informações e te respondemos com um valor estimado sem compromisso nenhum.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Atendem qualquer marca de aparelho?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Trabalhamos com as principais marcas do mercado — Apple, Samsung, Motorola, Xiaomi e outras. Se tiver dúvida sobre a sua, é só perguntar antes pelo WhatsApp.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Preciso levar o aparelho na loja?<span class="plus">+</span></button>
-          <div class="faq-a"><p>Para a maioria dos casos sim, mas o orçamento inicial é feito à distância — você só se desloca depois de já saber o valor estimado.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#top" class="logo"><span class="logo-mark"></span>Quântico<span>.digital</span></a>
-        <p>Assistência técnica especializada em Belo Horizonte. Celular, notebook, tablet, TV e mais — com garantia em tudo que fazemos.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Serviços</h4>
-        <a href="#servicos">Celular</a>
-        <a href="#servicos">Notebook</a>
-        <a href="#servicos">Tablet</a>
-        <a href="#servicos">TV</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contato</h4>
-        <a id="footerWhats" href="#">WhatsApp</a>
-        <a href="#faq">Dúvidas frequentes</a>
-        <a href="#orcamento">Pedir orçamento</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Quântico Digital Tecnologia. Todos os direitos reservados.</span>
-      <span>Belo Horizonte, MG</span>
-    </div>
-  </div>
-</footer>
-
-<a href="#orcamento" class="float-cta">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.3A10 10 0 1012 2zm5.6 14.2c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.7-1.2-4.5-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.9.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.5.6-.2.2-.4.4-.2.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.8 1.8.3.2.5.1.7-.1.2-.2.8-1 1-1.3.2-.3.4-.3.7-.2.3.1 1.7.8 2 1 .3.1.5.2.6.3.1.2.1.9-.1 1.4z"/></svg>
-  Falar no WhatsApp
-</a>
-
-<script>
-  // ======= CONFIG =======
-  // TODO(Juju): troque pelo número real da loja, formato DDI+DDD+numero, só dígitos.
-  const WHATSAPP_NUMBER = "553182937047";
-
-  // ======= Counter animation (aparelhos diagnosticados) =======
-  (function animateCounter(){
-    const el = document.getElementById('counterReparos');
-    const target = 312; // ajuste esse número conforme o volume real da loja
-    const duration = 1600;
-    const start = performance.now();
-    function tick(now){
-      const p = Math.min(1, (now - start) / duration);
-      el.textContent = Math.floor(p * target);
-      if(p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  })();
-
-  // ======= FAQ accordion =======
-  document.querySelectorAll('.faq-list').forEach(list => {
-    list.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-q').addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        list.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if(!isOpen) item.classList.add('open');
-      });
-    });
-  });
-
-  // ======= Service grid -> jumps to form and preselects device =======
-  let selectedDevice = null;
-  let selectedProblems = new Set();
-
-  function selectDevice(value){
-    selectedDevice = value;
-    document.querySelectorAll('.device-chip').forEach(c => {
-      c.classList.toggle('selected', c.dataset.value === value);
-    });
-    document.querySelectorAll('.service-card').forEach(c => {
-      c.classList.toggle('active', c.dataset.device === value);
-    });
-    document.getElementById('errStep1').classList.remove('show');
-  }
-
-  document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('click', () => {
-      selectDevice(card.dataset.device);
-      document.getElementById('orcamento').scrollIntoView({behavior:'smooth'});
-    });
-  });
-
-  document.querySelectorAll('.device-chip').forEach(chip => {
-    chip.addEventListener('click', () => selectDevice(chip.dataset.value));
-  });
-
-  document.querySelectorAll('.problem-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const v = chip.dataset.value;
-      if(selectedProblems.has(v)){
-        selectedProblems.delete(v);
-        chip.classList.remove('selected');
-      } else {
-        selectedProblems.add(v);
-        chip.classList.add('selected');
-      }
-      document.getElementById('errStep2').classList.remove('show');
-    });
-  });
-
-  // ======= Multi-step navigation =======
-  let currentStep = 1;
-
-  function showStep(step){
-    document.querySelectorAll('.form-step').forEach(s => {
-      s.classList.toggle('active', Number(s.dataset.step) === step);
-    });
-    document.querySelectorAll('.step-dot').forEach(d => {
-      d.classList.toggle('done', Number(d.dataset.step) <= step);
-    });
-    currentStep = step;
-  }
-
-  document.querySelectorAll('[data-next]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if(currentStep === 1){
-        if(!selectedDevice){
-          document.getElementById('errStep1').classList.add('show');
-          return;
-        }
-      }
-      if(currentStep === 2){
-        if(selectedProblems.size === 0){
-          document.getElementById('errStep2').classList.add('show');
-          return;
-        }
-      }
-      showStep(currentStep + 1);
-    });
-  });
-
-  document.querySelectorAll('[data-prev]').forEach(btn => {
-    btn.addEventListener('click', () => showStep(currentStep - 1));
-  });
-
-  // ======= Submit -> build WhatsApp message + local backup log =======
-  document.getElementById('leadForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const name = document.getElementById('leadName').value.trim();
-    const phone = document.getElementById('leadPhone').value.trim();
-    const errEl = document.getElementById('errStep3');
-
-    if(!name || !phone){
-      errEl.classList.add('show');
-      return;
-    }
-    errEl.classList.remove('show');
-
-    const problems = Array.from(selectedProblems).join(', ');
-    const message =
-`Olá! Vim pelo site da Quântico Digital e quero um orçamento.
-Aparelho: ${selectedDevice}
-Problema: ${problems}
-Nome: ${name}
-Telefone: ${phone}`;
-
-    // backup local simples do lead (fica no navegador do visitante como histórico do formulário;
-    // para receber os leads centralizados, integrar depois com Google Sheets / CRM via webhook)
-    try{
-      const leads = JSON.parse(localStorage.getItem('quantico_leads') || '[]');
-      leads.push({ device: selectedDevice, problems: Array.from(selectedProblems), name, phone, date: new Date().toISOString() });
-      localStorage.setItem('quantico_leads', JSON.stringify(leads));
-    } catch(err){ /* localStorage indisponível, segue o fluxo normalmente */ }
-
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-
-    document.getElementById('leadForm').style.display = 'none';
-    document.querySelector('.step-indicator').style.display = 'none';
-    document.getElementById('successPanel').style.display = 'block';
-  });
-
-  document.getElementById('resetForm').addEventListener('click', () => {
-    selectedDevice = null;
-    selectedProblems = new Set();
-    document.querySelectorAll('.device-chip, .problem-chip, .service-card').forEach(c => c.classList.remove('selected','active'));
-    document.getElementById('leadName').value = '';
-    document.getElementById('leadPhone').value = '';
-    document.getElementById('leadForm').reset();
-    document.getElementById('leadForm').style.display = 'block';
-    document.querySelector('.step-indicator').style.display = 'flex';
-    document.getElementById('successPanel').style.display = 'none';
-    showStep(1);
-  });
-
-  // footer whatsapp link
-  document.getElementById('footerWhats').href = `https://wa.me/${WHATSAPP_NUMBER}`;
-</script>
-
-</body>
-</html>
+    <nav class="container">
