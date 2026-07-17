@@ -6,13 +6,12 @@
 <title>Quântico Digital | Assistência Técnica Especializada em BH</title>
 <meta name="description" content="Conserto de celular, notebook, tablet, TV e mais. Orçamento sem compromisso em minutos, direto no WhatsApp.">
 
-<!-- Preconnect para fontes e recursos externos -->
+<!-- Preconnect para fontes -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
-<!-- Preload da imagem crítica (LCP) -->
-<link rel="preload" as="image" href="Fotos/banner-modelo-1440w.webp" type="image/webp" fetchpriority="high" imagesrcset="Fotos/banner-modelo-768w.webp 768w, Fotos/banner-modelo-1200w.webp 1200w, Fotos/banner-modelo-1920w.webp 1920w" imagesizes="100vw">
+<!-- Preload da imagem crítica -->
+<link rel="preload" as="image" href="Fotos/banner-modelo.jpg" fetchpriority="high">
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -49,20 +48,13 @@
   .mono{font-family:'JetBrains Mono',monospace;}
   a{color:inherit;text-decoration:none;}
   
-  /* Containment para isolamento de layout */
   .wrap{
     max-width:1180px;
     margin:0 auto;
     padding:0 24px;
-    contain: layout inline-size;
   }
   
   ::selection{background:var(--gold-dim);color:var(--text-hi);}
-
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
-    outline:2px solid var(--signal);
-    outline-offset:3px;
-  }
 
   /* ---------- NAV ---------- */
   header{
@@ -70,7 +62,6 @@
     background:rgba(10,12,16,0.85);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
-    contain: layout paint;
   }
   nav.wrap{
     display:flex; align-items:center; justify-content:space-between;
@@ -116,104 +107,61 @@
   .nav-links{display:none;}
   @media(min-width:860px){.nav-links{display:flex;}}
 
-  /* ---------- MODEL BANNER (RESPONSIVO) ---------- */
+  /* ---------- BANNER HERO - CORRIGIDO ---------- */
   .model-banner{
     position:relative;
     width:100%;
-    /* Mobile: proporção mais quadrada para não ficar achatado */
-    aspect-ratio: 4 / 3;
-    min-height: 320px;
-    max-height: 70vh;
+    /* Mobile: altura proporcional */
+    height: 60vh;
+    min-height: 400px;
+    max-height: 600px;
     overflow:hidden;
     border-bottom:1px solid var(--line);
     background: var(--panel);
-    contain: layout paint size;
-    background-image: 
-      linear-gradient(135deg, var(--panel-2) 0%, var(--panel) 50%, var(--panel-2) 100%);
-    background-size: 200% 200%;
-    animation: shimmer 1.5s ease-in-out infinite;
   }
   
-  /* Tablet: proporção intermediária */
-  @media(min-width: 640px){
-    .model-banner{
-      aspect-ratio: 16 / 9;
-      min-height: 400px;
-    }
-  }
-  
-  /* Desktop: proporção wide original */
+  /* Desktop: altura maior */
   @media(min-width: 1024px){
     .model-banner{
-      aspect-ratio: 2.02 / 1;
-      min-height: 480px;
-      max-height: 600px;
+      height: 70vh;
+      max-height: 700px;
     }
   }
-  
-  @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-  
-  .model-banner.loaded {
-    animation: none;
-    background: var(--panel);
-  }
 
-  .model-banner picture,
   .model-banner img {
     position:absolute; 
     inset:0;
     width:100%; 
     height:100%;
     object-fit:cover;
-    /* Mobile: foca no centro da imagem */
     object-position: center center;
-    will-change: transform;
-    transform: translateZ(0);
-  }
-  
-  /* Desktop: pode focar um pouco acima */
-  @media(min-width: 1024px){
-    .model-banner img{
-      object-position: center 20%;
-    }
-  }
-  
-  .model-banner img {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  .model-banner.loaded img {
-    opacity: 1;
   }
 
   /* Overlay responsivo */
   .model-banner-overlay{
     position:absolute; 
     inset:0;
-    /* Mobile: gradiente vertical mais forte embaixo */
+    /* Mobile: gradiente vertical */
     background:linear-gradient(
       180deg, 
-      rgba(10,12,16,0.3) 0%, 
-      rgba(10,12,16,0.85) 50%, 
-      rgba(10,12,16,0.98) 100%
+      rgba(10,12,16,0.2) 0%, 
+      rgba(10,12,16,0.7) 40%, 
+      rgba(10,12,16,0.95) 100%
     );
     display:flex; 
-    align-items:flex-end; /* Alinha no bottom em mobile */
-    padding:24px 20px;
+    align-items:flex-end;
+    padding:40px 24px;
     z-index: 1;
   }
   
-  /* Tablet/Desktop: gradiente lateral */
-  @media(min-width: 640px){
+  /* Desktop: gradiente lateral */
+  @media(min-width: 768px){
     .model-banner-overlay{
       background:linear-gradient(
         90deg, 
-        rgba(10,12,16,0.95) 0%, 
-        rgba(10,12,16,0.75) 40%, 
-        rgba(10,12,16,0.3) 70%
+        rgba(10,12,16,0.92) 0%, 
+        rgba(10,12,16,0.7) 45%, 
+        rgba(10,12,16,0.2) 100%
       );
       align-items:center;
       padding:0 24px;
@@ -222,15 +170,16 @@
   
   .model-banner-overlay .wrap{width:100%;}
   .model-banner-overlay h2{
-    font-size:clamp(1.4rem, 5vw, 2.6rem); 
+    font-size:clamp(1.8rem, 5vw, 2.8rem); 
     max-width:100%; 
     line-height:1.15; 
-    margin-bottom:12px;
+    margin-bottom:16px;
+    color: var(--text-hi);
   }
   
-  @media(min-width: 640px){
+  @media(min-width: 768px){
     .model-banner-overlay h2{
-      max-width:440px;
+      max-width:500px;
     }
   }
   
@@ -238,29 +187,29 @@
   .model-banner-overlay p{
     color:var(--text-mid); 
     max-width:100%; 
-    margin-bottom:18px; 
-    font-size:.95rem;
+    margin-bottom:24px; 
+    font-size:1rem;
+    line-height: 1.5;
   }
   
-  @media(min-width: 640px){
+  @media(min-width: 768px){
     .model-banner-overlay p{
-      max-width:380px;
+      max-width:420px;
     }
   }
 
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
-    padding:96px 0 72px;
+    padding:80px 0 60px;
     border-bottom:1px solid var(--line);
-    overflow:hidden;
-    contain: layout;
   }
   .hero-grid{
-    display:grid; grid-template-columns:1fr; gap:56px; align-items:center;
+    display:grid; grid-template-columns:1fr; gap:48px; align-items:center;
   }
   @media(min-width:960px){
     .hero-grid{grid-template-columns:1.05fr .95fr;}
+    .hero{padding:96px 0 72px;}
   }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
@@ -270,7 +219,7 @@
   }
   .eyebrow::before{content:"";width:18px;height:1px;background:var(--signal);}
   .hero h1{
-    font-size:clamp(2.1rem, 4.6vw, 3.4rem);
+    font-size:clamp(2rem, 4.6vw, 3.4rem);
     font-weight:700; line-height:1.08;
     margin-bottom:22px;
   }
@@ -287,7 +236,7 @@
   .stat .num span{color:var(--signal);}
   .stat .label{font-size:.78rem; color:var(--text-low); margin-top:2px;}
 
-  /* diagnostic scope panel */
+  /* ---------- SCOPE ---------- */
   .scope{
     position:relative;
     background:var(--panel);
@@ -295,7 +244,6 @@
     border-radius:var(--radius);
     padding:28px 24px 22px;
     box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
-    contain: layout paint;
   }
   .scope-head{
     display:flex; justify-content:space-between; align-items:center;
@@ -340,34 +288,17 @@
     }
   }
 
-  /* ---------- PHOTO FRAME (RESPONSIVO) ---------- */
+  /* ---------- PHOTO FRAME ---------- */
   .photo-frame-container {
     position: relative;
     width: 100%;
-    /* Mobile: proporção mais quadrada */
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     margin-bottom: 18px;
     border-radius: var(--radius);
     overflow: hidden;
-    contain: layout paint size;
     background: var(--panel);
   }
   
-  /* Tablet: 16:10 */
-  @media(min-width: 640px){
-    .photo-frame-container{
-      aspect-ratio: 16 / 10;
-    }
-  }
-  
-  /* Desktop: mais wide */
-  @media(min-width: 1024px){
-    .photo-frame-container{
-      aspect-ratio: 16 / 9;
-    }
-  }
-  
-  .photo-frame-container picture,
   .photo-frame-container img {
     width: 100%;
     height: 100%;
@@ -376,49 +307,19 @@
     border-radius: var(--radius);
     border: 1px solid var(--line);
   }
-  
-  .photo-frame-container img {
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .photo-frame-container.loaded img {
-    opacity: 1;
-  }
-  
-  .photo-frame-container::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, var(--panel) 25%, var(--panel-2) 50%, var(--panel) 75%);
-    background-size: 200% 100%;
-    animation: skeleton 1.5s ease-in-out infinite;
-    z-index: -1;
-  }
-  .photo-frame-container.loaded::before {
-    display: none;
-  }
-  
-  @keyframes skeleton {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
 
-  /* ---------- BIG STAT + PHOTO (RESPONSIVO) ---------- */
+  /* ---------- STAT PHOTO ---------- */
   .stat-photo{
     position:relative;
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
     background:var(--panel);
     overflow:hidden;
-    contain: layout paint;
-    /* Mobile: altura maior para acomodar conteúdo */
-    min-height: 500px;
+    min-height: 450px;
   }
   
   @media(min-width: 768px){
-    .stat-photo{
-      min-height: 400px;
-    }
+    .stat-photo{min-height: 400px;}
   }
   
   .stat-photo-bg-container {
@@ -432,30 +333,15 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Mobile: foca no topo onde está o conteúdo importante */
-    object-position: center 30%;
-    transition: transform 0.6s ease;
+    object-position: center;
   }
   
-  @media(min-width: 768px){
-    .stat-photo-bg-container img{
-      object-position: center center;
-    }
-  }
-  
-  .stat-photo:hover .stat-photo-bg-container img {
-    transform: scale(1.02);
-  }
-  
-  /* Overlay responsivo */
   .stat-photo-overlay {
     position: absolute;
     inset: 0;
-    /* Mobile: gradiente vertical mais escuro */
     background: linear-gradient(
       180deg,
-      rgba(10,12,16,0.9) 0%,
-      rgba(10,12,16,0.85) 50%,
+      rgba(10,12,16,0.85) 0%,
       rgba(10,12,16,0.9) 100%
     );
     z-index: 1;
@@ -480,9 +366,7 @@
   }
   
   @media(min-width: 768px){
-    .stat-photo-inner{
-      padding:80px 0;
-    }
+    .stat-photo-inner{padding:80px 0;}
   }
   
   .stat-photo-inner .eyebrow{margin-bottom:16px;}
@@ -509,7 +393,8 @@
   .trust-item .d{font-size:.78rem; color:var(--text-low);}
 
   /* ---------- SERVICES ---------- */
-  .section{padding:88px 0; contain: layout;}
+  .section{padding:80px 0;}
+  @media(min-width:768px){.section{padding:88px 0;}}
   .section-head{max-width:620px; margin-bottom:48px;}
   .section-head .eyebrow{margin-bottom:14px;}
   .section-head h2{font-size:clamp(1.6rem, 3vw, 2.2rem); margin-bottom:14px;}
@@ -532,7 +417,6 @@
     transition:border-color .2s ease, transform .2s ease, background .2s ease;
     text-align:left;
     display:flex; flex-direction:column; gap:14px;
-    contain: layout paint;
   }
   .service-card:hover, .service-card.active{
     border-color:var(--gold-dim);
@@ -566,9 +450,10 @@
     background:var(--void);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:32px;
-    contain: layout paint;
+    padding:24px;
   }
+  @media(min-width:640px){.form-card{padding:32px;}}
+  
   .step-indicator{
     display:flex; gap:8px; margin-bottom:26px;
   }
@@ -633,10 +518,6 @@
   .success-panel h3{margin-bottom:10px;}
   .success-panel p{color:var(--text-mid); font-size:.9rem; margin-bottom:22px;}
 
-  /* ---------- POR QUE ESCOLHER ---------- */
-  .why-choose .faq-item{border-color:var(--line);}
-  .why-choose .faq-q{font-size:1.05rem;}
-
   /* ---------- FAQ ---------- */
   .faq-item{
     border-bottom:1px solid var(--line);
@@ -660,7 +541,6 @@
   footer{
     padding:56px 0 32px;
     border-top:1px solid var(--line);
-    contain: layout;
   }
   .footer-grid{
     display:flex; flex-wrap:wrap; justify-content:space-between; gap:32px;
@@ -675,7 +555,7 @@
     font-size:.78rem; color:var(--text-low); border-top:1px solid var(--line); padding-top:24px;
   }
 
-  /* floating whatsapp button */
+  /* ---------- FLOAT CTA ---------- */
   .float-cta{
     position:fixed; bottom:22px; right:22px; z-index:60;
     display:flex; align-items:center; gap:10px;
@@ -683,39 +563,8 @@
     padding:14px 20px; border-radius:999px;
     box-shadow:0 14px 30px -10px rgba(51,230,194,0.5);
     transition:transform .2s ease;
-    contain: layout paint;
   }
   .float-cta:hover{transform:translateY(-3px);}
-
-  /* ---------- RESPONSIVE UTILITIES ---------- */
-  .img-responsive {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  /* Reduz motion para usuários que preferem */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-    
-    .model-banner,
-    .photo-frame-container {
-      animation: none !important;
-    }
-  }
-  
-  /* Melhoria de fonte para dispositivos de alta densidade */
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    body {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  }
 </style>
 </head>
 <body>
@@ -734,40 +583,14 @@
 
 <main id="top">
 
-  <!-- ==================== BANNER HERO (OTIMIZADO) ==================== -->
+  <!-- BANNER HERO - CORRIGIDO -->
   <section class="model-banner" id="heroBanner">
-    <picture>
-      <source 
-        type="image/webp" 
-        srcset="
-          Fotos/banner-modelo-768w.webp 768w,
-          Fotos/banner-modelo-1200w.webp 1200w,
-          Fotos/banner-modelo-1920w.webp 1920w,
-          Fotos/banner-modelo-2912w.webp 2912w
-        "
-        sizes="100vw"
-      >
-      <source 
-        type="image/jpeg" 
-        srcset="
-          Fotos/banner-modelo-768w.jpg 768w,
-          Fotos/banner-modelo-1200w.jpg 1200w,
-          Fotos/banner-modelo-1920w.jpg 1920w,
-          Fotos/banner-modelo-2912w.jpg 2912w
-        "
-        sizes="100vw"
-      >
-      <img 
-        src="Fotos/banner-modelo-1200w.jpg" 
-        alt="Seu dispositivo parou de funcionar? Solicite seu orçamento pelo WhatsApp em minutos - Quântico Digital"
-        width="2912" 
-        height="1440"
-        fetchpriority="high"
-        loading="eager"
-        decoding="async"
-        onload="this.closest('.model-banner').classList.add('loaded')"
-      >
-    </picture>
+    <!-- Imagem simples sem srcset complexo -->
+    <img 
+      src="Fotos/banner-modelo.jpg" 
+      alt="Seu dispositivo parou de funcionar? Solicite seu orçamento pelo WhatsApp em minutos - Quântico Digital"
+      fetchpriority="high"
+    >
     
     <div class="model-banner-overlay">
       <div class="wrap">
@@ -778,7 +601,7 @@
     </div>
   </section>
 
-  <!-- ==================== HERO CONTEÚDO ==================== -->
+  <!-- HERO CONTEÚDO -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
@@ -806,38 +629,12 @@
       </div>
 
       <div>
-        <div class="photo-frame-container" id="heroPhoto">
-          <picture>
-            <source 
-              type="image/webp" 
-              srcset="
-                Fotos/hero-photo-400w.webp 400w,
-                Fotos/hero-photo-600w.webp 600w,
-                Fotos/hero-photo-800w.webp 800w,
-                Fotos/hero-photo-1200w.webp 1200w
-              "
-              sizes="(max-width: 960px) 90vw, 450px"
-            >
-            <source 
-              type="image/jpeg" 
-              srcset="
-                Fotos/hero-photo-400w.jpg 400w,
-                Fotos/hero-photo-600w.jpg 600w,
-                Fotos/hero-photo-800w.jpg 800w,
-                Fotos/hero-photo-1200w.jpg 1200w
-              "
-              sizes="(max-width: 960px) 90vw, 450px"
-            >
-            <img 
-              src="Fotos/hero-photo-600w.jpg" 
-              alt="Técnico da Quântico Digital realizando diagnóstico de equipamento"
-              width="800" 
-              height="500"
-              loading="lazy"
-              decoding="async"
-              onload="this.closest('.photo-frame-container').classList.add('loaded')"
-            >
-          </picture>
+        <div class="photo-frame-container">
+          <img 
+            src="Fotos/hero-photo.jpg" 
+            alt="Técnico da Quântico Digital realizando diagnóstico de equipamento"
+            loading="lazy"
+          >
         </div>
 
         <div class="scope">
@@ -856,7 +653,7 @@
     </div>
   </section>
 
-  <!-- ==================== TRUST BAR ==================== -->
+  <!-- TRUST BAR -->
   <section class="trust">
     <div class="wrap">
       <div class="trust-item">
@@ -878,39 +675,14 @@
     </div>
   </section>
 
-  <!-- ==================== BIG STAT + PHOTO (OTIMIZADO) ==================== -->
+  <!-- BIG STAT + PHOTO -->
   <section class="stat-photo">
     <div class="stat-photo-bg-container">
-      <picture>
-        <source 
-          type="image/webp" 
-          srcset="
-            Fotos/bancada-800w.webp 800w,
-            Fotos/bancada-1200w.webp 1200w,
-            Fotos/bancada-1600w.webp 1600w,
-            Fotos/bancada-2400w.webp 2400w
-          "
-          sizes="100vw"
-        >
-        <source 
-          type="image/jpeg" 
-          srcset="
-            Fotos/bancada-800w.jpg 800w,
-            Fotos/bancada-1200w.jpg 1200w,
-            Fotos/bancada-1600w.jpg 1600w,
-            Fotos/bancada-2400w.jpg 2400w
-          "
-          sizes="100vw"
-        >
-        <img 
-          src="Fotos/bancada-1200w.jpg" 
-          alt="Bancada de trabalho da Quântico Digital com equipamentos sendo reparados"
-          width="2400" 
-          height="1800"
-          loading="lazy"
-          decoding="async"
-        >
-      </picture>
+      <img 
+        src="Fotos/bancada.jpg" 
+        alt="Bancada de trabalho da Quântico Digital com equipamentos sendo reparados"
+        loading="lazy"
+      >
     </div>
     
     <div class="stat-photo-overlay"></div>
@@ -927,7 +699,7 @@
     </div>
   </section>
 
-  <!-- ==================== SERVICES ==================== -->
+  <!-- SERVICES -->
   <section class="section" id="servicos">
     <div class="wrap">
       <div class="section-head">
@@ -981,7 +753,7 @@
     </div>
   </section>
 
-  <!-- ==================== LEAD FORM ==================== -->
+  <!-- LEAD FORM -->
   <section class="section lead-section" id="orcamento">
     <div class="wrap lead-grid">
       <div class="lead-copy">
@@ -1060,7 +832,7 @@
     </div>
   </section>
 
-  <!-- ==================== POR QUE ESCOLHER ==================== -->
+  <!-- POR QUE ESCOLHER -->
   <section class="section why-choose" id="por-que-escolher">
     <div class="wrap" style="max-width:760px">
       <div class="section-head">
@@ -1084,7 +856,7 @@
     </div>
   </section>
 
-  <!-- ==================== FAQ ==================== -->
+  <!-- FAQ -->
   <section class="section" id="faq" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
     <div class="wrap" style="max-width:760px">
       <div class="section-head">
@@ -1299,26 +1071,6 @@
 
   const footerWhats = document.getElementById('footerWhats');
   if(footerWhats) footerWhats.href = `https://wa.me/${WHATSAPP_NUMBER}`;
-
-  if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          const container = img.closest('.photo-frame-container, .stat-photo-bg-container');
-          if (container) container.classList.add('loaded');
-          observer.unobserve(img);
-        }
-      });
-    }, {
-      rootMargin: '50px 0px',
-      threshold: 0.01
-    });
-
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-      imageObserver.observe(img);
-    });
-  }
 </script>
 
 </body>
